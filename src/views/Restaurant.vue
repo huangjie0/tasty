@@ -34,9 +34,16 @@
 </template>s
 
 <script>
+import restaurantget from '@/api/restaurant/index'
 export default {
     name:'Restaurant',
-
+    created(){
+      restaurantget().then(res=>{
+        console.log(res)
+      }).catch(err=>{
+        console.log(err)
+      })
+    }
 }
 </script>
 

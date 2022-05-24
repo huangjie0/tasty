@@ -16,7 +16,7 @@
           <div>密码:</div>
           <div>
             <input
-              type="text"
+              type="password"
               v-model="users.password"
               placeholder="请输入密码"
             />
