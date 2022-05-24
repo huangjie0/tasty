@@ -1,5 +1,5 @@
 <template>
-  <div class="headerleft">
+  <div class="headerleft" @click='toRestaurant'>
       <img class="img_1" src="@/assets/logo.png" alt="">
   </div>
 </template>
@@ -7,6 +7,11 @@
 <script>
 export default {
     name:'HeaderLeft',
+    methods:{
+      toRestaurant (){
+        this.$router.push('/restaurant')
+      }
+    }
 
 }
 </script>
