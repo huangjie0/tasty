@@ -21,6 +21,7 @@ export default {
 
 <style lang='less' scoped>
 .bounced{
+  background-color: aquamarine;
   width: 300px;
   height: 150px;
   display: flex;
