@@ -40,7 +40,6 @@ const vueouter = new VueRouter({
                 meta:{
                     isin:true
                 }
-
             }
         ]
     }
@@ -50,7 +49,7 @@ vueouter.beforeEach((to,from,next)=>{
         next()
     }else{
         if(getloacalStore('token')){
-           console.log('111')
+           next()
         }else{
             next('/login')
         } 
