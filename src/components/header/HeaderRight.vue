@@ -1,7 +1,8 @@
 <template>
-  <div class="headerright" @click="tobounced">
+  <div class="headerright" @click="bouncedClick">
       <img class="img_2" src="@/assets/profile-icon.png" alt="">
-      <SmallMask v-if="isbounced" class="bounced_position" @toExitLogin='toExitLogin' @exitBounced='exitBounced'/>
+      <SmallMask v-if="isBounced" class="bounced_position" @hiddleBounced='hiddleBounced'
+      />
   </div>
 </template>
 
@@ -14,18 +15,16 @@ export default {
     },
     data() {
       return {
-        isbounced:false
+        isBounced:false
       }
     },
     methods:{
-      tobounced(){
-        this.isbounced=true
+      bouncedClick(){
+        this.isBounced=true
       },
-      toExitLogin(){
-        this.isbounced=false
-      },
-      exitBounced(){
-        this.isbounced=false
+      hiddleBounced(){
+        this.isBounced=false;
+        console.log(this.isBounced)
       }
     }
 }

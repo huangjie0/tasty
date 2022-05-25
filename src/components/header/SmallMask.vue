@@ -12,17 +12,18 @@
 
 <script>
 import {getloacalStore,removelocalStore} from '@/common/until'
-import {} from 'vuex'
+import {mapMutations} from 'vuex'
 export default {
     name:'SmallMask',
     methods:{
+      //调用mapMutations里面的方法
+      ...mapMutations(['clearUser']),
       oreders(){
-        //路由跳转到订单页面中
         this.$router.push('/order')
+         //路由跳转到订单页面中
+        this.$emit('hiddleBounced')
       },
       tologin(){
-        //向父组件发射要关闭弹框的回调函数
-        this.$emit('exitBounced')
         //跳转到登录页面
         this.$router.push('/login')
       },
@@ -31,11 +32,9 @@ export default {
         removelocalStore('users')
         removelocalStore('token')
         //将vuex中数据清空
-
+        this.clearUser()
         //清空完返回到登录页面
         this.$router.push('/login')
-        //当用户点击退出按钮，会关闭弹框
-        this.$emit('toExitLogin')
       }
     },
     data() {
@@ -78,6 +77,7 @@ export default {
     font-size: 25px;
 }
 .bounced{
+  background-color: aqua;
   width: 300px;
   height: 200px;
   display: flex;
