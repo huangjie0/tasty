@@ -1,19 +1,25 @@
 <template>
   <div class="bounced">
+      <div class="orders" @click="oreders" v-if="isOrder">查看订单情况</div>
       <div class="login_bounced" @click="tologin" v-if="isLogin">登录</div>
       <div class="login_bounced_1">
         <div class="bounced_l">中</div>
         <div class="bounced_r">En</div>
       </div>
-      <div class="exit" @click="toExitLogin()" v-if="isExit">退出</div>
+      <div class="exit" @click="toExitLogin" v-if="isExit">退出</div>
   </div>
 </template>
 
 <script>
 import {getloacalStore,removelocalStore} from '@/common/until'
+import {} from 'vuex'
 export default {
     name:'SmallMask',
     methods:{
+      oreders(){
+        //路由跳转到订单页面中
+        this.$router.push('/order')
+      },
       tologin(){
         //向父组件发射要关闭弹框的回调函数
         this.$emit('exitBounced')
@@ -24,6 +30,8 @@ export default {
         //当点击退出按钮，将用户消息清空和token清空
         removelocalStore('users')
         removelocalStore('token')
+        //将vuex中数据清空
+
         //清空完返回到登录页面
         this.$router.push('/login')
         //当用户点击退出按钮，会关闭弹框
@@ -33,7 +41,8 @@ export default {
     data() {
       return {
         isLogin:true,
-        isExit:true
+        isExit:true,
+        isOrder:true,
       }
     },
     //当组件创建的时候所执行的函数
@@ -42,12 +51,23 @@ export default {
         this.isLogin = false
       }else{
         this.isExit=false
+        this.isOrder=false
       }
     }
 }
 </script>
 
 <style lang='less' scoped>
+.orders{
+  width: 280px;
+  height: 50px;
+  border-radius: 50px;
+  background-color: black;
+  color: white;
+  line-height: 50px;
+  text-align: center;
+  font-size: 25px;
+}
 .exit{
     width: 280px;
     height: 50px;
