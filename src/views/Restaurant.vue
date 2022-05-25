@@ -6,7 +6,7 @@
           所有餐馆
         </div>
       </div>
-      <div class="restaurant_right">
+      <!-- <div class="restaurant_right">
         <div class="children_1">
           <div>1111</div>
           <div>1111</div>
@@ -28,7 +28,7 @@
             <div>5555</div>
             <div>5555</div>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>s
@@ -39,7 +39,7 @@ export default {
     name:'Restaurant',
     created(){
       restaurantget().then(res=>{
-        console.log(res)
+        // console.log(res)
       }).catch(err=>{
         console.log(err)
       })

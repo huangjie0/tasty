@@ -1,29 +1,65 @@
 <template>
   <div class="bounced">
-      <div class="login_bounced" @click="tologin">登录</div>
+      <div class="login_bounced" @click="tologin" v-if="isLogin">登录</div>
       <div class="login_bounced_1">
         <div class="bounced_l">中</div>
         <div class="bounced_r">En</div>
       </div>
+      <div class="exit" @click="toExitLogin()" v-if="isExit">退出</div>
   </div>
 </template>
 
 <script>
+import {getloacalStore,removelocalStore} from '@/common/until'
 export default {
     name:'SmallMask',
     methods:{
       tologin(){
+        //向父组件发射要关闭弹框的回调函数
+        this.$emit('exitBounced')
+        //跳转到登录页面
         this.$router.push('/login')
+      },
+      toExitLogin(){
+        //当点击退出按钮，将用户消息清空和token清空
+        removelocalStore('users')
+        removelocalStore('token')
+        //清空完返回到登录页面
+        this.$router.push('/login')
+        //当用户点击退出按钮，会关闭弹框
+        this.$emit('toExitLogin')
+      }
+    },
+    data() {
+      return {
+        isLogin:true,
+        isExit:true
+      }
+    },
+    //当组件创建的时候所执行的函数
+    created(){
+      if(getloacalStore('users')){
+        this.isLogin = false
+      }else{
+        this.isExit=false
       }
     }
 }
 </script>
 
 <style lang='less' scoped>
+.exit{
+    width: 280px;
+    height: 50px;
+    border-radius: 50px;
+    border: 3px solid rgb(165, 165, 165);
+    line-height: 50px;
+    text-align: center;
+    font-size: 25px;
+}
 .bounced{
-  background-color: aquamarine;
   width: 300px;
-  height: 150px;
+  height: 200px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;

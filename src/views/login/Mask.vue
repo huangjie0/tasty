@@ -3,9 +3,10 @@
       <div class="loin_mask_1">
           <div class="login_mask_2"> 
             <div>用户名: <input type="text" v-model="users.username"></div>
-            <div>密码:<input type="text" v-model="users.password"></div>
+            <div>密码:<input type="password" v-model="users.password"></div>
             <div>
-                <button @click="isconfirm">确认</button>
+                <button @click="isConfirm">确认</button>
+                <button @click="isCancel">取消</button>
             </div>
           </div>
       </div>
@@ -25,7 +26,7 @@ export default {
         }
     },
     methods:{
-        isconfirm(){
+        isConfirm(){
             if(this.users.username && this.users.password){
                 //用户名的正则表达式
               const userregex = /^[a-zA-Z0-9_-]{4,16}$/
@@ -48,8 +49,16 @@ export default {
 
                     })
                 }
-               
-            }         
+            }else{
+                alert('用户名和密码不能为空!')
+            }       
+        },
+        //当用户点击取消按钮，清空用户名和密码并且跳转到登录页面
+        isCancel(){
+            this.users.username=''
+            this.users.password=''
+            //跳转到登录页面，并且关闭弹框
+            this.$emit('cancelBounced')
         }
     }
 }
@@ -89,7 +98,8 @@ export default {
         button{
             width: 90px;
             height: 40px;
-            font-size: 20px
+            font-size: 20px;
+            margin-right: 10px
         }
     };
 }

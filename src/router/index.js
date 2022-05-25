@@ -7,7 +7,7 @@ const vueouter = new VueRouter({
         routes:[
             {
                 path:'/',
-                component:()=>import('@/views/Login.vue')
+                redirect:'/restaurant'
             },
             {
                 path:'/restaurant',

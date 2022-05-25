@@ -44,12 +44,13 @@ export default {
           users:{
               username:'',
               password:''
-          }
+          },
+          isUserBounced:true
       }
   },
   methods:{
       register_1(){
-        this.$emit('maskclick');
+        this.$emit('maskClick');
       },
       login_1(){
         //当用户点击登录按钮时候要做的事
@@ -63,14 +64,15 @@ export default {
                 }
                 if(!password.test(this.users.password)){
                     alert('密码输入有误，请重新输入')
+                    this.users.password=''
                 }
                 if(userregex.test(this.users.username)&&password.test(this.users.password)){
                     loginpost(this.users.username,this.users.password).then(res=>{
+                    //用户名的弹框
                     alert('登录成功!')
-                    console.log(res)
                     //将本地的用户的token存储在本地浏览器上
                     setloacalStore('token',res.data.token)
-
+                    //登录后将用户的信息存到本地浏览器上
                     setloacalStore('users',res.data)
                     this.$router.push('/restaurant')
                     }).catch(err=>{
@@ -78,7 +80,9 @@ export default {
                         console.log(err)
                     })
                 }
-          }         
+          }else{
+            alert('用户名和密码不能为空!')
+          }       
       }
   }
 };

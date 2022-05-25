@@ -1,8 +1,8 @@
 <template>
 
   <div class="login">
-    <LoginMask v-if="isShow" @isconfirm='isconfirm'/>
-    <LoginPage @maskclick='maskclick'/>
+    <LoginMask v-if="isShow" @isConfirm='isConfirm' @cancelBounced='cancelBounced'/>
+    <LoginPage @maskClick='maskClick'/>
   </div>
 
 </template>
@@ -18,16 +18,22 @@ export default {
       LoginMask,
     },
     methods:{
-      maskclick(){
+      maskClick(){
+        //当用户点击登录的按钮所触发的事件
         this.isShow=true
       },
-      isconfirm(){
+      isConfirm(){
+        this.isShow=false
+      },
+      cancelBounced(){
+        //当用户点击取消了注册，将弹框取消
         this.isShow=false
       }
 
     },
     data() {
       return {
+        //初始化的弹框的页面是关闭的
         isShow:false
       }
     },
