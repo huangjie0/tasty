@@ -37,7 +37,6 @@ export default {
 
 <style lang='less' scoped>
 .restaurant_right{
-  margin-top: 150px;
   background-color: blueviolet;
 }
 .children_1>div{

@@ -1,5 +1,4 @@
 <template>
-
   <div class="login">
     <LoginMask v-if="isShow" @isConfirm='isConfirm' @cancelBounced='cancelBounced'/>
     <LoginPage @maskClick='maskClick'/>
