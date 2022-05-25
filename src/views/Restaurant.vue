@@ -7,7 +7,16 @@
         </div>
       </div>
       <div class="restaurant_right">
-        11111
+        <div class="foodsLeft">
+          <div v-for="(item,index) in restaurantList" :key="item._id">
+            {{item.name['zh-HK']}}
+          </div>
+        </div>
+        <div class="foodsRight">
+          <div class="foodsRight_1"> 
+            111
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -21,13 +30,21 @@ export default {
     methods:{
       ...mapMutations(['closeLoading','openLoading'])
     },
+    data() {
+      return {
+        //当请求发送成功时所渲染的数据
+        restaurantList:[]
+      }
+    },
     created(){
       //在发请求之前关闭loading
       //再发请求之前开启loading页面
-        this.openLoading()
+      this.openLoading()
       restaurantget().then(res=>{
+        this.restaurantList=res.data
+        console.log(this.restaurantList)
       }).catch(err=>{
-        console.log(err)
+        // console.log(err)
       }).finally(()=>{
         this.closeLoading()
       })
@@ -36,8 +53,24 @@ export default {
 </script>
 
 <style lang='less' scoped>
+@width:400px;
+@height:1000px;
+.foodsLeft,.foodsRight{
+  min-width:@width;
+  min-height:@height;
+  position: relative;
+}
+.foodsRight_1{
+  position: absolute;
+  min-width:@width;
+  min-height:800px;;
+  top: 200px;
+  background-color: chocolate;
+  
+}
 .restaurant_right{
-  background-color: blueviolet;
+  display: flex;
+  justify-content: space-between;
 }
 .children_1>div{
   min-width:400px;
