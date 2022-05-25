@@ -6,48 +6,40 @@
           所有餐馆
         </div>
       </div>
-      <!-- <div class="restaurant_right">
-        <div class="children_1">
-          <div>1111</div>
-          <div>1111</div>
-          <div>1111</div>
-          <div>1111</div>
-          <div>1111</div>
-          <div>1111</div>
-          <div>1111</div>
-          <div>1111</div>
-          <div>1111</div>
-          <div>1111</div>
-        </div>
-        <div class="children_2">
-            <div>5555</div>
-            <div>5555</div>
-            <div>5555</div>
-            <div>5555</div>
-            <div>5555</div>
-            <div>5555</div>
-            <div>5555</div>
-        </div>
-      </div> -->
+      <div class="restaurant_right">
+        11111
+      </div>
     </div>
   </div>
-</template>s
+</template>
 
 <script>
+import {mapMutations} from 'vuex'
 import restaurantget from '@/api/restaurant/index'
 export default {
     name:'Restaurant',
+    methods:{
+      ...mapMutations(['closeLoading','openLoading'])
+    },
     created(){
+      //在发请求之前关闭loading
+      //再发请求之前开启loading页面
+        this.openLoading()
       restaurantget().then(res=>{
-        // console.log(res)
       }).catch(err=>{
         console.log(err)
+      }).finally(()=>{
+        this.closeLoading()
       })
     }
 }
 </script>
 
 <style lang='less' scoped>
+.restaurant_right{
+  margin-top: 150px;
+  background-color: blueviolet;
+}
 .children_1>div{
   min-width:400px;
   min-height: 440px;

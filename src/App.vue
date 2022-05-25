@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <Loading v-if="isLoading"/>
     <Header/>
     <router-view/>
   </div>
@@ -7,10 +8,18 @@
 
 <script>
 import Header from '@/components/header/Header.vue'
+import Loading from '@/components/loading/Loading.vue'
+import {mapState} from 'vuex'
 export default {
   name: 'App',
   components:{
-    Header
+    Header,
+    Loading
+  },
+  computed:{
+    ...mapState({
+      'isLoading':state=>state.loading.isLoading
+    })
   }
 }
 </script>

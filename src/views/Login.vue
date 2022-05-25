@@ -29,7 +29,6 @@ export default {
         //当用户点击取消了注册，将弹框取消
         this.isShow=false
       }
-
     },
     data() {
       return {

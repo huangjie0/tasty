@@ -67,6 +67,7 @@ export default {
                     this.users.password=''
                 }
                 if(userregex.test(this.users.username)&&password.test(this.users.password)){
+                  //在请求之前打开loading页面
                     loginpost(this.users.username,this.users.password).then(res=>{
                     //用户名的弹框
                     alert('登录成功!')

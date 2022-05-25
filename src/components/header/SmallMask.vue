@@ -1,6 +1,6 @@
 <template>
   <div class="bounced">
-      <div class="orders" @click="oreders" v-if="isOrder">查看订单情况</div>
+      <div class="orders" @click.stop="oreders" v-if="isOrder">查看订单情况</div>
       <div class="login_bounced" @click="tologin" v-if="isLogin">登录</div>
       <div class="login_bounced_1">
         <div class="bounced_l">中</div>
@@ -20,8 +20,6 @@ export default {
       ...mapMutations(['clearUser']),
       oreders(){
         this.$router.push('/order')
-         //路由跳转到订单页面中
-        this.$emit('hiddleBounced')
       },
       tologin(){
         //跳转到登录页面
@@ -57,6 +55,13 @@ export default {
 </script>
 
 <style lang='less' scoped>
+.bounced{
+  z-index: 2;
+  position: absolute;
+  top: 30px;
+  right: 70px;
+}
+
 .orders{
   width: 280px;
   height: 50px;
@@ -77,7 +82,6 @@ export default {
     font-size: 25px;
 }
 .bounced{
-  background-color: aqua;
   width: 300px;
   height: 200px;
   display: flex;
