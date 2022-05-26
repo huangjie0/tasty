@@ -28,13 +28,20 @@
                 辣椒
               </div>
               <div class="plate">
+                <!-- 盘子 -->
                 <img src="@/assets/dark-dish.png" alt="">
+                <!-- 菜名 -->
+                <img  class="smallFood_img" src="@/assets/邓记云南过桥米线-手撕杏鲍菇.png" alt="">
               </div>
               <div class="plate_1">
                 <img src="@/assets/dark-dish.png" alt="">
+                <!-- 菜名 -->
+                <img  class="smallFood_img_1" src="@/assets/邓记云南过桥米线-水饺.png" alt="">
               </div>
               <div class="plate_2">
                 <img src="@/assets/dark-dish.png" alt="">
+                 <!-- 菜名 -->
+                <img  class="smallFood_img_2" src="@/assets/邓记云南过桥米线-红油猪耳 (2).png" alt="">
               </div>
             </div>
           </div>
@@ -50,6 +57,8 @@ import restaurantget from '@/api/restaurant/index'
 import _ from 'lodash'
 export default {
     name:'Restaurant',
+    components:{
+    },
     methods:{
       ...mapMutations(['closeLoading','openLoading'])
     },
@@ -78,6 +87,11 @@ export default {
         const newfoodList = _.orderBy(newRestaurantList,['zscore'],['desc'])
         this.restaurantList = newfoodList
         console.log(this.restaurantList)
+        // ...之后的逻辑
+        
+
+
+
 
       }).catch(err=>{
       }).finally(()=>{
@@ -88,9 +102,20 @@ export default {
 </script>
 
 <style lang='less' scoped>
-.foodList{
-  min-width:400px;
-  min-height: 500px;
+ .title{
+    min-width: 400px;
+    height: 60px;
+    font-size: 35px ;
+    font-weight: 600;
+    line-height: 60px;
+  }
+  .title_1{
+  min-width: 400px;
+  height:30px;
+  line-height: 30px;
+  font-size: 18px;
+  color: rgb(124, 124, 124);
+  }
   .img:hover>.dishes_1{
     display: block;
   }
@@ -119,6 +144,10 @@ export default {
       position: absolute;
       top: 250px;
       left: 60px;
+      .smallFood_img_2{
+        width: 100px;
+        height: 90px;
+      }
       img{
         width: 100px;
         height: 110px;
@@ -130,6 +159,10 @@ export default {
       position: absolute;
       top: 150px;
       left:200px;
+      .smallFood_img_1{
+      width: 150px;
+      height: 135px;
+      }
       img{
         width: 150px;
         height: 180px;
@@ -144,6 +177,10 @@ export default {
       display: flex;
       justify-content: center;
       align-items: center;
+      .smallFood_img{
+        width: 200px;
+        height: 163px;
+      }
     }
     img{
       width: 180px;
@@ -176,20 +213,9 @@ export default {
       display: none;
     }
   }
-  .title_1{
-    min-width: 400px;
-    height:30px;
-    line-height: 30px;
-    font-size: 18px;
-    color: rgb(124, 124, 124);
-  }
-  .title{
-    min-width: 400px;
-    height: 60px;
-    font-size: 35px ;
-    font-weight: 600;
-    line-height: 60px;
-  }
+.foodList{
+  min-width:400px;
+  min-height: 500px;
 }
 @width:400px;
 @height:1000px;
