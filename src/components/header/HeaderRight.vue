@@ -18,6 +18,7 @@ export default {
       }
     },
     methods:{
+      //关闭监听事件
       bouncedClick(){
         //判定状态是否是开启和关闭再进行操作
         if(!this.isBounced){

@@ -44,6 +44,13 @@ export default {
     },
     //当组件创建的时候所执行的函数
     created(){
+      //判断路由是否时login页面
+      if(this.$route.path=='/login'){
+        this.isLogin=false
+        this.isExit=false
+        this.isOrder=false
+      }
+      //从当地浏览器中去users值，如果有，登录取消，否则将其他两个设为true
       if(getloacalStore('users')){
         this.isLogin = false
       }else{

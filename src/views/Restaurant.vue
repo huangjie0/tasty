@@ -54,13 +54,26 @@
 <script>
 import {mapMutations} from 'vuex'
 import restaurantget from '@/api/restaurant/index'
+import {setloacalStore} from '@/common/until'
+//导入时间处理的时区的模块
+import moment from 'moment-timezone'
+import moment_1 from 'moment'
+
 import _ from 'lodash'
 export default {
     name:'Restaurant',
     components:{
     },
     methods:{
+       //checkClosed方法
+        checkClosed(item){
+          const closed = _.get(item,'closed',null)
+          if(closed !==null){
+            return false
+          }
+        },
       ...mapMutations(['closeLoading','openLoading'])
+
     },
     data() {
       return {
@@ -85,10 +98,25 @@ export default {
         })
         //再根据zscore进行降序排列
         const newfoodList = _.orderBy(newRestaurantList,['zscore'],['desc'])
-        this.restaurantList = newfoodList
-        console.log(this.restaurantList)
-        // ...之后的逻辑
-        
+        const openArray = [];
+        const closeArray = [];
+        _.forEach(newfoodList,(item)=>{
+          if(this.checkClosed(item)){
+            openArray.push(item);
+          }else{
+            closeArray.push(item)
+          }
+        })
+        const newFoodlist = openArray.concat(closeArray)
+        //获取当前时间
+        const m = moment.tz('America/New_York')
+        //获取纽约时间的分钟数
+        const mins = m.hours()*60 + m.minute();
+        //获取当前是周几
+        const dayOfWeek = m.isoWeekday() - 1;
+
+
+
 
 
 
