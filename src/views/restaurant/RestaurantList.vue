@@ -1,6 +1,6 @@
 <template>
-  <div>
-
+  <div class="restaurantList">
+    我是餐馆列表
   </div>
 </template>
 
@@ -11,5 +11,9 @@ export default {
 </script>
 
 <style lang='less' scoped>
-
+.restaurantList{
+  min-width:400px;
+  min-height: 500px;
+  background-color: aqua;
+}
 </style>

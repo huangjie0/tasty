@@ -3,18 +3,40 @@
     <div class="restaurant_1">
       <div class="restaurant_left">
         <div class="all">
+          <div class="underline"></div>
           所有餐馆
         </div>
       </div>
       <div class="restaurant_right">
         <div class="foodsLeft">
-          <div v-for="(item,index) in restaurantList" :key="item._id">
-            {{item.name['zh-HK']}}
-          </div>
-        </div>
-        <div class="foodsRight">
-          <div class="foodsRight_1"> 
-            111
+          <!-- 即将要渲染的数据 -->
+          <div class="foodList" v-for="(item,index) in restaurantList" :key="item._id">
+            <div class="title">
+              {{item.name['zh-CN']}}
+            </div>
+            <div class="title_1">
+              川菜系列
+            </div>
+            <div class="img">
+              <div class="dishes_1">
+              红烧猪耳
+              </div>
+              <div class="dishes_2">
+                猪油
+              </div>
+              <div class="dishes_3">
+                辣椒
+              </div>
+              <div class="plate">
+                <img src="@/assets/dark-dish.png" alt="">
+              </div>
+              <div class="plate_1">
+                <img src="@/assets/dark-dish.png" alt="">
+              </div>
+              <div class="plate_2">
+                <img src="@/assets/dark-dish.png" alt="">
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -25,6 +47,7 @@
 <script>
 import {mapMutations} from 'vuex'
 import restaurantget from '@/api/restaurant/index'
+import _ from 'lodash'
 export default {
     name:'Restaurant',
     methods:{
@@ -41,10 +64,22 @@ export default {
       //再发请求之前开启loading页面
       this.openLoading()
       restaurantget().then(res=>{
-        this.restaurantList=res.data
+        //拿到每一个餐馆的名称
+        const foodsList = res.data
+        const newRestaurantList=[]
+        foodsList.forEach(item=>{
+          if(item.featured){
+            newRestaurantList.unshift(item)
+          }else{
+            newRestaurantList.push(item)
+          }
+        })
+        //再根据zscore进行降序排列
+        const newfoodList = _.orderBy(newRestaurantList,['zscore'],['desc'])
+        this.restaurantList = newfoodList
         console.log(this.restaurantList)
+
       }).catch(err=>{
-        // console.log(err)
       }).finally(()=>{
         this.closeLoading()
       })
@@ -53,6 +88,109 @@ export default {
 </script>
 
 <style lang='less' scoped>
+.foodList{
+  min-width:400px;
+  min-height: 500px;
+  .img:hover>.dishes_1{
+    display: block;
+  }
+  .img:hover >.plate{
+    transform: translateY(10px);
+  }
+  .img:hover > .plate_1{
+    transform: translateY(10px);
+  }
+  .img:hover > .plate_2{
+    transform: translateX(10px);
+  }
+  .img:hover >.dishes_2{
+    display: block;
+  }
+  .img:hover >.dishes_3{
+    display: block;
+  }
+  .img{
+    min-width: 400px;
+    height: 420px;
+    position: relative;
+    .plate_2{
+      width: 100px;
+      height: 100px;
+      position: absolute;
+      top: 250px;
+      left: 60px;
+      img{
+        width: 100px;
+        height: 110px;
+      }
+    }
+    .plate_1{
+      width: 150px;
+      height: 150px;
+      position: absolute;
+      top: 150px;
+      left:200px;
+      img{
+        width: 150px;
+        height: 180px;
+      }
+    }
+    .plate{
+      width: 180px;
+      height: 180px;
+      position: absolute;
+      top: 50px;
+      left: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    img{
+      width: 180px;
+      height: 200px;
+      position: absolute;
+      top: 10px;
+    }
+    .dishes_1{
+      top: 10px;
+      left:40px;
+      position: absolute;
+      font-size: 18px;
+      color: rgb(124, 124, 124);
+      display: none;
+    }
+    .dishes_2{
+      top: 110px;
+      left:250px;
+      position: absolute;
+      font-size: 18px;
+      color: rgb(124, 124, 124);
+      display: none;
+    }
+    .dishes_3{
+      top: 230px;
+      left:90px;
+      position: absolute;
+      font-size: 18px;
+      color: rgb(124, 124, 124);
+      display: none;
+    }
+  }
+  .title_1{
+    min-width: 400px;
+    height:30px;
+    line-height: 30px;
+    font-size: 18px;
+    color: rgb(124, 124, 124);
+  }
+  .title{
+    min-width: 400px;
+    height: 60px;
+    font-size: 35px ;
+    font-weight: 600;
+    line-height: 60px;
+  }
+}
 @width:400px;
 @height:1000px;
 .foodsLeft,.foodsRight{
@@ -63,10 +201,9 @@ export default {
 .foodsRight_1{
   position: absolute;
   min-width:@width;
-  min-height:800px;;
+  min-height:500px;;
   top: 200px;
   background-color: chocolate;
-  
 }
 .restaurant_right{
   display: flex;
@@ -104,6 +241,13 @@ export default {
         position: absolute;
         top: 20px;
         left: 20px;
+        .underline{
+          position: absolute;
+          top: 65px;
+          width: 50px;
+          height: 8px;
+          background-color: black;
+        }
       }
     }
     .restaurant_right{
