@@ -57,7 +57,7 @@ import restaurantget from '@/api/restaurant/index'
 import {setloacalStore} from '@/common/until'
 //导入时间处理的时区的模块
 import moment from 'moment-timezone'
-import moment_1 from 'moment'
+import moment_1, { min } from 'moment'
 
 import _ from 'lodash'
 export default {
@@ -71,7 +71,23 @@ export default {
           if(closed !==null){
             return false
           }
-        },
+          
+          //获取当前时间
+          const m = moment.tz('America/New_York')
+          //获取纽约时间的分钟数
+          const mins = m.hours()*60 + m.minute();
+          //获取当前是周几
+          const dayOfWeek = m.isoWeekday() - 1;
+          //拿到每个餐馆开始和结束时间
+          const start = _.get(item,`hours[${dayOfWeek}].start`,0)
+          const end = _.get(item,`hours[${dayOfWeek}].end`,0)
+          //返回的是排序好的结果
+          if(mins >= start && mins <= end){
+            return true
+          }else{
+            return false
+          }
+          },
       ...mapMutations(['closeLoading','openLoading'])
 
     },
@@ -108,12 +124,8 @@ export default {
           }
         })
         const newFoodlist = openArray.concat(closeArray)
-        //获取当前时间
-        const m = moment.tz('America/New_York')
-        //获取纽约时间的分钟数
-        const mins = m.hours()*60 + m.minute();
-        //获取当前是周几
-        const dayOfWeek = m.isoWeekday() - 1;
+        
+
 
 
 
