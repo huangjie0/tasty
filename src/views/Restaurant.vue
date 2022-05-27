@@ -141,6 +141,7 @@ export default {
     this.openLoading();
     restaurantget()
       .then((res) => {
+        console.log(res)
         //拿到每一个餐馆的名称
         const foodsList = res.data;
         const newfoodList = _.orderBy(

@@ -10,5 +10,5 @@ export function encode (str){
 }
 
 export default function menusget(id){
-    return instance.get(`api/menu/restaurantId/${id}`)
+    return instance.get(`/api/menu/restaurantId/${id}`)
 }
