@@ -34,11 +34,11 @@ const vueouter = new VueRouter({
                 }
             },
             {
-                path:'/menus',
+                path:'/menus/:id',
                 name:'menus',
                 component:()=>import('@/views/Menus.vue'),
                 meta:{
-                    isin:true
+                    isin:false
                 }
             }
         ]
