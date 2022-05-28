@@ -77,7 +77,7 @@ export default {
   color: white;
   line-height: 50px;
   text-align: center;
-  font-size: 25px;
+  font-size: 20px;
 }
 .exit{
     width: 280px;
@@ -86,7 +86,7 @@ export default {
     border: 3px solid rgb(165, 165, 165);
     line-height: 50px;
     text-align: center;
-    font-size: 25px;
+    font-size: 20px;
 }
 .bounced{
   width: 300px;
@@ -109,7 +109,7 @@ export default {
       border-radius: 50%;
       text-align: center;
       line-height: 50px;
-      font-size: 20px;
+      font-size: 18px;
     }
     .bounced_r{
       width: 50px;
@@ -117,7 +117,7 @@ export default {
       border-radius: 50%;
       text-align: center;
       line-height: 50px;
-      font-size: 20px;
+      font-size: 18px;
       border:2px solid rgb(148, 148, 148);
     }
   }
@@ -128,7 +128,7 @@ export default {
     border: 3px solid rgb(165, 165, 165);
     line-height: 50px;
     text-align: center;
-    font-size: 25px;
+    font-size: 20px;
   }
 }
 </style>
