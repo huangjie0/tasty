@@ -53,6 +53,7 @@
                 <div class="smallTitle_2"></div>
               </div>
             </div>
+            <!-- ------------------------------------------------------- -->
 
 
 
@@ -122,17 +123,15 @@ export default {
     position: absolute;
     width: 70%;
     height: 100%;
-    display: flex;
-    justify-content: space-between;
     .foodMenusLeft_list{
-      width: 100%;
+      width: 450px;
       min-height: 200px;
       background-color:aqua;
     }
     .foodMenusLeft_left{
-      width: 50%;
-      height: 100%;
-      background-color: blueviolet;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
       .smallTitle{
         height: 50px;
         display: flex;
