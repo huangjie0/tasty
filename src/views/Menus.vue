@@ -11,16 +11,53 @@
       <div class="foodMenus">
         <div class="foodMenusLeft">
           <div class="foodMenusLeft_left">
-            <div>111</div>
-            <div>2222</div>
-            <div>2222</div>
-            <div>2222</div>
-          </div>
-          <div class="foodMenusLeft_right">
-            <div>33333</div>
-            <div>333</div>
-            <div>333</div>
-            <div>333</div>
+            <!-- 每一个菜单列表页 -->
+            <div class="foodMenusLeft_list">
+              <div class="smallTitle">
+                <div class="smallTitle_1">小料</div>
+                <div class="smallTitle_2"></div>
+              </div>
+            </div>
+            <!-- ------------------------------------------------------- -->
+            <div class="foodMenusLeft_list">
+              <div class="smallTitle">
+                <div class="smallTitle_1">小料</div>
+                <div class="smallTitle_2"></div>
+              </div>
+            </div>
+            <!-- ------------------------------------------------------------------- -->
+              <div class="foodMenusLeft_list">
+              <div class="smallTitle">
+                <div class="smallTitle_1">小料</div>
+                <div class="smallTitle_2"></div>
+              </div>
+            </div>
+            <!-- ------------------------------------------------------- -->
+              <div class="foodMenusLeft_list">
+              <div class="smallTitle">
+                <div class="smallTitle_1">小料</div>
+                <div class="smallTitle_2"></div>
+              </div>
+            </div>
+            <!-- ------------------------------------------------------- -->
+               <div class="foodMenusLeft_list">
+              <div class="smallTitle">
+                <div class="smallTitle_1">小料</div>
+                <div class="smallTitle_2"></div>
+              </div>
+            </div>
+            <!-- ------------------------------------------------------- -->
+                <div class="foodMenusLeft_list">
+              <div class="smallTitle">
+                <div class="smallTitle_1">小料</div>
+                <div class="smallTitle_2"></div>
+              </div>
+            </div>
+
+
+
+
+
           </div>
         </div>
         <div class="foodMenusRight">
@@ -43,7 +80,11 @@ export default {
       return {
         //页面数据
         restaurantTitle:'',
-        varieties:''
+        varieties:'',
+        //食品分类
+        categories:[],
+        //食品类别
+        foods:[]
       }
     },
      components:{
@@ -60,7 +101,9 @@ export default {
       const {id} = this.$route.params
       //根据所传来的id进行发请求进行渲染页面
       menusget(id).then(res=>{
-        console.log('res: ', res);
+        this.categories = res.data.categories
+        this.foods = res.data.foods
+        console.log(this.categories)
       })
     }
 }
@@ -81,10 +124,30 @@ export default {
     height: 100%;
     display: flex;
     justify-content: space-between;
+    .foodMenusLeft_list{
+      width: 100%;
+      min-height: 200px;
+      background-color:aqua;
+    }
     .foodMenusLeft_left{
       width: 50%;
       height: 100%;
-      background-color: blueviolet
+      background-color: blueviolet;
+      .smallTitle{
+        height: 50px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        .smallTitle_2{
+          width: 60px;
+          height: 8px;
+          background-color: black;
+        }
+        .smallTitle_1{
+          font-size: 30px;
+          font-weight: 700;
+        }
+      }
     };
     .foodMenusLeft_right{
       width: 50%;
@@ -99,6 +162,7 @@ export default {
   .menus_1{
     position: absolute;
     min-height: 608px;
+    max-height: 1000px;
     display: flex;
     align-items: center;
     position: relative;
