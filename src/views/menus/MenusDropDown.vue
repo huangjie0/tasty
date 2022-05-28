@@ -17,6 +17,7 @@ export default {
   color: rgb(150, 150, 150);
 }
 .dropdown{
+  cursor: pointer;
   top: 850px;
   right: 305px;
   position: fixed;
