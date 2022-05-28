@@ -12,53 +12,13 @@
         <div class="foodMenusLeft">
           <div class="foodMenusLeft_left">
             <!-- 每一个菜单列表页 -->
-            <div class="foodMenusLeft_list">
+            <div class="foodMenusLeft_list" v-for="item in foodList.categories" :key="item._id">
               <div class="smallTitle">
-                <div class="smallTitle_1">小料</div>
+                <div class="smallTitle_1">111</div>
                 <div class="smallTitle_2"></div>
               </div>
+              <MenusList/>
             </div>
-            <!-- ------------------------------------------------------- -->
-            <div class="foodMenusLeft_list">
-              <div class="smallTitle">
-                <div class="smallTitle_1">小料</div>
-                <div class="smallTitle_2"></div>
-              </div>
-            </div>
-            <!-- ------------------------------------------------------------------- -->
-              <div class="foodMenusLeft_list">
-              <div class="smallTitle">
-                <div class="smallTitle_1">小料</div>
-                <div class="smallTitle_2"></div>
-              </div>
-            </div>
-            <!-- ------------------------------------------------------- -->
-              <div class="foodMenusLeft_list">
-              <div class="smallTitle">
-                <div class="smallTitle_1">小料</div>
-                <div class="smallTitle_2"></div>
-              </div>
-            </div>
-            <!-- ------------------------------------------------------- -->
-               <div class="foodMenusLeft_list">
-              <div class="smallTitle">
-                <div class="smallTitle_1">小料</div>
-                <div class="smallTitle_2"></div>
-              </div>
-            </div>
-            <!-- ------------------------------------------------------- -->
-                <div class="foodMenusLeft_list">
-              <div class="smallTitle">
-                <div class="smallTitle_1">小料</div>
-                <div class="smallTitle_2"></div>
-              </div>
-            </div>
-            <!-- ------------------------------------------------------- -->
-
-
-
-
-
           </div>
         </div>
         <div class="foodMenusRight">
@@ -74,6 +34,7 @@
 import menusget from '@/api/menus/index.js'
 import {getloacalStore} from '@/common/until.js'
 import MenusDropDown from '@/views/menus/MenusDropDown.vue'
+import MenusList from '@/views/menus/MenusList.vue'
 
 export default {
     name:"Menus",
@@ -82,14 +43,13 @@ export default {
         //页面数据
         restaurantTitle:'',
         varieties:'',
-        //食品分类
-        categories:[],
-        //食品类别
-        foods:[]
+        //食品列表
+        foodsList:{}
       }
     },
      components:{
-        MenusDropDown
+        MenusDropDown,
+        MenusList
     },
     created(){
       //从本地浏览器里面取数据
@@ -102,9 +62,8 @@ export default {
       const {id} = this.$route.params
       //根据所传来的id进行发请求进行渲染页面
       menusget(id).then(res=>{
-        this.categories = res.data.categories
-        this.foods = res.data.foods
-        console.log(this.categories)
+        this.foodsList = res.data
+        console.log(this.foodsList)
       })
     }
 }
@@ -118,7 +77,6 @@ export default {
   display: flex;
   justify-content: space-between;
   .foodMenusLeft{
-    background-color: cadetblue;
     top: 150px;
     position: absolute;
     width: 70%;
@@ -126,7 +84,6 @@ export default {
     .foodMenusLeft_list{
       width: 450px;
       min-height: 200px;
-      background-color:aqua;
     }
     .foodMenusLeft_left{
       display: flex;
@@ -139,7 +96,7 @@ export default {
         justify-content: space-between;
         .smallTitle_2{
           width: 60px;
-          height: 8px;
+          height: 10px;
           background-color: black;
         }
         .smallTitle_1{
