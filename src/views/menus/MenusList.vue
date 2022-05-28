@@ -15,6 +15,7 @@
 export default {
     name:"MenusList",
     props:['foodsList'],
+    
 }
 </script>
 
