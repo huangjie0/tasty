@@ -12,9 +12,9 @@
         <div class="foodMenusLeft">
           <div class="foodMenusLeft_left">
             <!-- 每一个菜单列表页 -->
-            <div class="foodMenusLeft_list" v-for="item in foodList.categories" :key="item._id">
+            <div class="foodMenusLeft_list" v-for="item in  foodsList" :key="item._id">
               <div class="smallTitle">
-                <div class="smallTitle_1">111</div>
+                <div class="smallTitle_1">{{item.name['zh-CN']}}</div>
                 <div class="smallTitle_2"></div>
               </div>
               <MenusList/>
@@ -44,7 +44,7 @@ export default {
         restaurantTitle:'',
         varieties:'',
         //食品列表
-        foodsList:{}
+        foodsList:[]
       }
     },
      components:{
@@ -62,8 +62,7 @@ export default {
       const {id} = this.$route.params
       //根据所传来的id进行发请求进行渲染页面
       menusget(id).then(res=>{
-        this.foodsList = res.data
-        console.log(this.foodsList)
+        this.foodsList = res.data.categories
       })
     }
 }
