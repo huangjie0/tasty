@@ -17,6 +17,7 @@
                 <div class="smallTitle_1">{{item.name['zh-CN']}}</div>
                 <div class="smallTitle_2"></div>
               </div>
+              <!-- 每一个种类的菜的列表页 -->
               <MenusList :foodsList='foodsList'/>
             </div>
           </div>
@@ -64,8 +65,6 @@ export default {
       menusget(id).then(res=>{
         this.categories = res.data.categories
         this.foodsList = res.data.foods
-        console.log(this.categories)
-        console.log(this.foodsList)
       })
     }
 }
