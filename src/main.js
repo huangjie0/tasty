@@ -13,6 +13,11 @@ VueRouter.prototype.push = function push(location, onResolve, onReject) {
 }
 
 new Vue({
+  //在全局组件创建时候挂载$bus
+  created(){
+    //往原型对象上挂载$bus
+    Vue.prototype.$bus=this
+  },
   store,
   router,
   render: h => h(App),

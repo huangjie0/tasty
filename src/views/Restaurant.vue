@@ -21,7 +21,7 @@
             <div class="title_1">
               {{ item.tags[0] }}
             </div>
-            <div class="img" @click="toMenus(item._id)">
+            <div class="img" @click="toMenus(item)">
               <div class="dishes_1">
                 {{ item.items[0] ? item.items[0].name['zh-CN'] : defaultItems[0].name['zh-CN'] }}
               </div>
@@ -66,11 +66,11 @@
 <script>
 import { mapMutations } from "vuex";
 import restaurantget from "@/api/restaurant/index";
-import { setloacalStore } from "@/common/until";
 //导入时间处理的时区的模块
 import moment from "moment-timezone";
 //导入loash库
 import _ from "lodash";
+import { setloacalStore } from '@/common/until';
 
 export default {
   name: "Restaurant",
@@ -99,8 +99,11 @@ export default {
     },
     ...mapMutations(["closeLoading", "openLoading"]),
     //配置这个方法跳转到菜单页面
-    toMenus(id) {
-      this.$router.push(`/menus/${id}`);
+    toMenus(item) {
+
+      this.$router.push(`/menus/${item._id}`);
+      setloacalStore('restaurant',item);
+
     }
   },
   data() {
