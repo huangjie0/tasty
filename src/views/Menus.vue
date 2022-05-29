@@ -63,9 +63,20 @@ export default {
       const {id} = this.$route.params
       //根据所传来的id进行发请求进行渲染页面
       menusget(id).then(res=>{
-        console.log(res)
-        this.categories = res.data.categories
-        this.foodsList = res.data.foods
+        //将得到的数据进行重构
+        const categories=[]
+        const foods=[]
+        res.data.categories.forEach(item_1=>{
+          res.data.foods.forEach(item_2=>{
+            if(item_1._id===item_2.category['_id']){
+              categories.push(item_1)
+            }
+          })
+        })
+        console.log(categories)
+        console.log(foods)
+        // this.categories = res.data.categories
+        // this.foodsList = res.data.foods
       })
     }
 }

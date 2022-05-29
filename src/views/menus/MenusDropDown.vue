@@ -38,6 +38,7 @@
 
 <script>
 import MenusDropDownList from '@/views/menus/MenusDropDownList.vue'
+import {getloacalStore} from '@/common/until.js'
 export default {
     name:'MenusDropDown',
     data() {
@@ -60,6 +61,15 @@ export default {
         this.isdropdowntop=true
         this.ismovePrice=true
         this.isMove=true
+        //检查用户是否登录进行判断，如果有就可以跳转到订单页面
+        if(getloacalStore('token')){
+          setTimeout(()=>{
+            this.$router.push('/order')
+          },4000)
+        }else{
+          alert('请登录!')
+          this.$router.push('/login')
+        }
       },
       showMenusDropDownList(){
         if(this.isMenusDropDownList){
@@ -155,6 +165,7 @@ export default {
   top:210px;
 }
 .dropdown{
+  background-color: rgb(255, 255, 255);
   cursor: pointer;
   right: 305px;
   bottom: 45px;
