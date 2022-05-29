@@ -21,6 +21,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
   .img_1{
     height: 60px;
   }

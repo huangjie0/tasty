@@ -205,6 +205,7 @@ export default {
   display: block;
 }
 .img {
+  cursor: pointer;
   min-width: 400px;
   height: 420px;
   position: relative;

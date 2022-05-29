@@ -1,7 +1,7 @@
 <template>
   <div class="dropdown">
     <div v-if="isMove" :class="{movePrice:ismovePrice}">
-      <div class="close">
+      <div class="close" @click="closeList">
         <img src="@/assets/close_btn.png" alt="">
       </div>
       <div class="closeLogo">
@@ -9,13 +9,26 @@
       </div>
       <div class="payment" @click="showMenusDropDownList">
         <div>
-          <img :src="paymentImg[0]">
+          <img src="@/assets/alipay.png">
         </div>
       </div>
       <MenusDropDownList v-if="isMenusDropDownList"/>
     </div>
     <div class="popped" v-if="isPopped">
-      11111
+      <!-- 用户点了餐的列表 -->
+      <div class="foodList"> 
+        <div class="foodList_1">香菇肉末米线 不辣</div>
+        <div class="foodList_2">
+          <div class="foodListPrice">
+            ￥20.00
+          </div>
+          <div class="foodListPrice_1">
+            <div>-</div>
+            <div>1</div>
+            <div>+</div>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="shopping">请选择购物车</div>
   
@@ -35,8 +48,9 @@ export default {
         isMove:false,
         isMenusDropDownList:false,
         // 初始化的图片数组
-        paymentImg:['../../assets/alipay.png','../../assets/wechatpay.png','../../assets/applepay_small.png'],
-        index:0
+        // paymentImg:['@/assets/alipay.png','@/assets/wechatpay.png','@/assets/applepay_small.png'],
+        //初始化索引值是0，第一个
+        // index:0
       }
     },
     methods: {
@@ -53,6 +67,10 @@ export default {
         }else{
            this.isMenusDropDownList=true
         }
+      },
+      closeList(){
+        this.isPopped=false
+        this.isMove=false
       }
     },
     components:{
@@ -85,7 +103,49 @@ export default {
 .popped{
   height:670px;
   width: 400px;
-  border-bottom:2px solid  rgb(190, 190, 190);;
+  border-bottom:2px solid  rgb(190, 190, 190);
+  .foodList{
+    width: 400px;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .foodList_1{
+      width: 170px;
+      height: 50px;
+      text-align: center;
+      line-height: 50px;
+      font-size: 18px;
+    }
+    .foodList_2{
+      width: 210px;
+      height: 50px;
+      line-height: 50px;
+      text-align: center;
+      font-size: 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .foodListPrice_1{
+        width: 120px;
+        height: 40px;
+        background-color: rgb(0, 0, 0);
+        border-radius: 20px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        font-size: 18px;
+        color: white;
+      }
+      .foodListPrice{
+        width: 90px;
+        height: 50px;
+        font-size: 18px;
+        text-align: center;
+        align-items: center;
+      }
+    }
+  }
 }
 .shopping{
   font-size: 20px;

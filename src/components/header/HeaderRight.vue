@@ -33,6 +33,7 @@ export default {
 
 <style lang='less' scoped>
 .headerright{
+  cursor: pointer;
   height: 45px;
   display: flex;
   justify-content: center;
