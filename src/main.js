@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from '@/router/index'
 import VueRouter from 'vue-router' 
 import store from '@/store/index'
+import 'animate.css';
 
 Vue.config.productionTip = false
 //防止路由连续跳转的情况底层处理
