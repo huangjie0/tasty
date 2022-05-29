@@ -1,12 +1,14 @@
 <template>
   <div>
-    <div class="smallList" v-for="(item,index) in foodsList" :key="item._id">
+    <div class="smallList">
       <div class="smallList_1">
         <div class="smallfoodsname">
-           {{item.name['zh-CN']}}
+          1111
         </div>
       </div>
-      <div class="smallList_2">￥{{item.price/100}}</div>
+      <div class="smallList_2">
+
+      </div>
     </div>
   </div>
 </template>
@@ -15,6 +17,9 @@
 export default {
     name:"MenusList",
     props:['foodsList'],
+    mounted(){                                                                            
+      console.log( this.foodsList)
+    }
     
 }
 </script>

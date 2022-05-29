@@ -18,7 +18,7 @@
                 <div class="smallTitle_2"></div>
               </div>
               <!-- 每一个种类的菜的列表页 -->
-              <MenusList :foodsList='foodsList'/>
+              <MenusList :foodsList="foodsList"/>
             </div>
           </div>
         </div>
@@ -65,21 +65,24 @@ export default {
       menusget(id).then(res=>{
         //将得到的数据进行重构
         const categories=[]
-        const foods=[]
+        this.categories = res.data.categories
         res.data.categories.forEach(item_1=>{
+          categories.push(item_1)
+            const foods=[]
           res.data.foods.forEach(item_2=>{
-            if(item_1._id===item_2.category['_id']){
-              categories.push(item_1)
+            if(item_1._id==item_2.category['_id']){
+                foods.push(item_2)
             }
-          })
         })
-        console.log(categories)
-        console.log(foods)
-        // this.categories = res.data.categories
-        // this.foodsList = res.data.foods
+          this.foodsList.push(foods)
+        })
       })
     }
 }
+
+
+
+// item_1._id===item_2.category['_id']
 </script>
 <style lang='less' scoped>
 .foodMenus{
