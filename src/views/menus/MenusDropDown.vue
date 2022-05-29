@@ -7,28 +7,12 @@
       <div class="closeLogo">
         <img src="@/assets/logo.png" alt="">
       </div>
-      <div class="payment">
+      <div class="payment" @click="showMenusDropDownList">
         <div>
-          <img src="@/assets/alipay.png" alt="">
+          <img :src="paymentImg[0]">
         </div>
       </div>
-      <div class="paymentList">
-        <div class="paymentList_1">
-          <div>
-            <img src="@/assets/alipay.png" alt="">
-          </div>
-        </div>
-        <div class="paymentList_2">
-          <div>
-            <img src="@/assets/wechatpay.png" alt="">
-          </div>
-        </div>
-        <div class="paymentList_3">
-          <div>
-            <img src="@/assets/applepay_small.png" alt="">
-          </div>
-        </div>
-      </div>
+      <MenusDropDownList v-if="isMenusDropDownList"/>
     </div>
     <div class="popped" v-if="isPopped">
       11111
@@ -48,7 +32,11 @@ export default {
         isPopped:false,
         isdropdowntop:false,
         ismovePrice:false,
-        isMove:false
+        isMove:false,
+        isMenusDropDownList:false,
+        // 初始化的图片数组
+        paymentImg:['../../assets/alipay.png','../../assets/wechatpay.png','../../assets/applepay_small.png'],
+        index:0
       }
     },
     methods: {
@@ -58,6 +46,13 @@ export default {
         this.isdropdowntop=true
         this.ismovePrice=true
         this.isMove=true
+      },
+      showMenusDropDownList(){
+        if(this.isMenusDropDownList){
+          this.isMenusDropDownList=false
+        }else{
+           this.isMenusDropDownList=true
+        }
       }
     },
     components:{
@@ -112,28 +107,6 @@ export default {
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
-  .paymentList{
-    width: 320px;
-    height: 200px;
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    top: 310px;
-    left: 55px;
-    border: 2px solid rgb(189, 189, 189);
-    border-radius: 10px;
-    .paymentList_1,.paymentList_2,.paymentList_3{
-      width: 320px;
-      height: 45px;
-      border-radius: 30px;
-      border: 2px solid  rgb(189, 189, 189);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-  }
   .payment{
     width: 300px;
     height: 50px;
@@ -187,5 +160,4 @@ export default {
   animation-name: anim1;
   background-color: rgb(55, 145, 55);
 }
-
 </style>
