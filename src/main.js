@@ -12,6 +12,10 @@ VueRouter.prototype.push = function push(location, onResolve, onReject) {
     if (onResolve || onReject) return originalPush.call(this, location, onResolve, onReject)
     return originalPush.call(this, location).catch(err => err)
 }
+//全局引入vue过滤器
+Vue.filter('currencyUSD',function(value){
+  return '$'+ value/100
+})
 
 new Vue({
   //在全局组件创建时候挂载$bus

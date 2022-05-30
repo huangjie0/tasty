@@ -35,6 +35,7 @@ import menusget from '@/api/menus/index.js'
 import {getloacalStore} from '@/common/until.js'
 import MenusDropDown from '@/views/menus/MenusDropDown.vue'
 import MenusList from '@/views/menus/MenusList.vue'
+import  {nanoid} from 'nanoid'
 
 export default {
     name:"Menus",
@@ -68,13 +69,14 @@ export default {
           const foods=[]
           res.data.foods.forEach(item_2=>{
             if(item_1._id==item_2.category['_id']){
+              //初始化点击开始的值，给后端传值
+              item_2.count = 0;
+              item_2.nanoid = nanoid()
               foods.push(item_2)
             }
         })
           //将每个菜馆下面的菜进行一一对应进行装进去
           item_1.foods = foods;
-          //初始化点击开始的值
-          item_1.count = 0;
           //将数据进行组装
           categories.push(item_1)
         })

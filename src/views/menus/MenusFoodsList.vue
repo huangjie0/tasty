@@ -1,23 +1,40 @@
 <template>
-  <div class="addFoods">
+<div>
+     <div class="addFoods" v-for="(item,index) in  menusFoodsList" :key="index">
       <div class="addFoodsLeft">
-          云南米线
+          {{item.name['zh-CN']}}
       </div>
       <div class="addFoodsRight">
-          <div class="addFoodsRight_1">$20.00</div>
+          <div class="addFoodsRight_1">{{item.price | currencyUSD}}</div>
           <div class="addFoodsRight_2">
               <div>-</div>
-              <div>$20.00</div>
+              <div>{{item.count}}</div>
               <div>+</div>
           </div>
       </div>
   </div>
+</div>
+ 
 </template>
 
 <script>
 export default {
-    name:'MenusFoodsList'
-
+    name:'MenusFoodsList',
+    data() {
+        return {
+            menusFoodsList:[]
+        }
+    },
+    //当组件创建时候接受到的值
+    mounted(){
+        //接受数据
+        this.$bus.$on('foodList',v=>{
+            //在下一次节点更新时候调用的函数
+            this.$nextTick(function(){
+                this.menusFoodsList.push(v);
+            })
+        })
+    }
 }
 </script>
 

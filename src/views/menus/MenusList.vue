@@ -1,16 +1,16 @@
 <template>
   <div>
-    <div class="smallList" v-for="(item,index) in foodsList" :key="item._id">
-      <div class="smallList_1"  @click="showSmallRound(index)">
-        <div class="smallRound" v-show="isSmallRound==index">
-          {{item.count++}}
+    <div class="smallList" v-for="(item,index) in foodsList" :key="item.nanoid">
+      <div class="smallList_1"  @click="showSmallRound(item)">
+        <div class="smallRound" v-show="item.count > 0">
+          {{item.count}}
         </div>
         <div class="smallfoodsname" :class="{grayFont:!item.available}">
           {{item.name['zh-CN']}}
         </div>
       </div>
       <div class="smallList_2" :class="{grayFont:!item.available}">
-        ￥{{item.price/100}}
+        {{item.price*item.count | currencyUSD}}
       </div>
     </div>
   </div>
@@ -26,13 +26,12 @@ export default {
         isSmallRound:-1,
       }
     },
-    mounted(){
-      console.log(this.foodsList);
-    },
     methods: {
       //鼠标点击是让其显示与隐藏，并且加++
-      showSmallRound(index){
-        this.isSmallRound=index
+      showSmallRound(item){
+        item.count +=1;
+        //发送数据
+        this.$bus.$emit('foodList',item)
       }
     },
 }

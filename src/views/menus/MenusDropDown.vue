@@ -176,7 +176,8 @@ export default {
   position: fixed;
   width: 400px;
   min-height: 120px;
-  max-height: 1500px;
+  max-height: 745px;
+  overflow: auto;
   box-shadow: 0px 0px 10px rgb(150, 150, 150);
   display: flex;
   flex-direction: column;
