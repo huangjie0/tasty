@@ -1,11 +1,11 @@
 <template>
   <div>
     <div class="smallList" v-for="(item,index) in foodsList" :key="item._id">
-      <div class="smallList_1" @click="showSmallRound(index)">
+      <div class="smallList_1"  @click="showSmallRound(index,$event)">
         <div class="smallRound" v-show="isSmallRound">
           {{number}}
         </div>
-        <div class="smallfoodsname" :class="{grayFont:!item.available}">
+        <div class="smallfoodsname" ref="foodName" :class="{grayFont:!item.available}">
           {{item.name['zh-CN']}}
         </div>
       </div>
@@ -29,13 +29,12 @@ export default {
       }
     },
     methods: {
-      showSmallRound(index){
-        //点击变成true
-        this.isSmallRound=true
-        //点击让其数量++
-        this.number++
-        //判断点击是否是自己的按钮
-        console.log(index)
+      showSmallRound(index,e){
+        // console.log(e.target)
+        if(this.$refs.foodName[index]==e.target){
+          //让当前的数量进行++
+            this.number++
+        }
       }
     },
 }
