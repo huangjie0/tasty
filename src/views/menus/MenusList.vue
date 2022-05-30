@@ -30,10 +30,12 @@ export default {
     },
     methods: {
       showSmallRound(index,e){
-        // console.log(e.target)
+        // 判断点击的元素是否是当前的元素
         if(this.$refs.foodName[index]==e.target){
+          //让当前元素显示出来
+          this.isSmallRound=true
           //让当前的数量进行++
-            this.number++
+          this.number++
         }
       }
     },
