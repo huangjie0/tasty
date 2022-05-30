@@ -1,11 +1,11 @@
 <template>
   <div>
     <div class="smallList" v-for="(item,index) in foodsList" :key="item._id">
-      <div class="smallList_1"  @click="showSmallRound(index,$event)">
-        <div class="smallRound" v-show="isSmallRound">
+      <div class="smallList_1"  @click="showSmallRound(index)">
+        <div class="smallRound" v-show="isSmallRound==index">
           {{number}}
         </div>
-        <div class="smallfoodsname" ref="foodName" :class="{grayFont:!item.available}">
+        <div class="smallfoodsname" :class="{grayFont:!item.available}">
           {{item.name['zh-CN']}}
         </div>
       </div>
@@ -23,20 +23,15 @@ export default {
     data() {
       return {
         //控制个数的数量
-        isSmallRound:false,
+        isSmallRound:-1,
         //初始的数量
-        number:0
+        number:0,
       }
     },
     methods: {
-      showSmallRound(index,e){
-        // 判断点击的元素是否是当前的元素
-        if(this.$refs.foodName[index]==e.target){
-          //让当前元素显示出来
-          this.isSmallRound=true
-          //让当前的数量进行++
-          this.number++
-        }
+      showSmallRound(index){
+        this.isSmallRound=index
+        this.number++
       }
     },
 }
