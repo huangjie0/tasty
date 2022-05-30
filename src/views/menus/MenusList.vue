@@ -1,9 +1,9 @@
 <template>
   <div>
-    <div class="smallList" v-for="item in foodsList" :key="item._id">
-      <div class="smallList_1">
-        <div class="smallRound">
-          11
+    <div class="smallList" v-for="(item,index) in foodsList" :key="item._id">
+      <div class="smallList_1" @click="showSmallRound(index)">
+        <div class="smallRound" v-show="isSmallRound">
+          {{number}}
         </div>
         <div class="smallfoodsname" :class="{grayFont:!item.available}">
           {{item.name['zh-CN']}}
@@ -19,7 +19,25 @@
 <script>
 export default {
     name:"MenusList",
-    props:['foodsList']
+    props:['foodsList'],
+    data() {
+      return {
+        //控制个数的数量
+        isSmallRound:false,
+        //初始的数量
+        number:0
+      }
+    },
+    methods: {
+      showSmallRound(index){
+        //点击变成true
+        this.isSmallRound=true
+        //点击让其数量++
+        this.number++
+        //判断点击是否是自己的按钮
+        console.log(index)
+      }
+    },
 }
 </script>
 
