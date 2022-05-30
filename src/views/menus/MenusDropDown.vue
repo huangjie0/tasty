@@ -30,7 +30,6 @@
         </div>
       </div>
     </div>
-
     <MenusFoodsList/>
     <div class="shopping">请选择购物车</div>
   
@@ -108,11 +107,12 @@ export default {
   animation-duration: 0.5s;
   position: fixed;
   width: 400px;
-  height: 670px;
+  height: 665px;
   background-color: rgb(255, 255, 255);
   box-shadow: 0px 0px 10px rgb(150, 150, 150);
   top: 210px;
   right: 305px;
+  z-index: -1;
 }
 .popped{
   height:670px;
@@ -169,6 +169,7 @@ export default {
   top:210px;
 }
 .dropdown{
+  z-index: 20000;
   background-color: rgb(255, 255, 255);
   cursor: pointer;
   right: 305px;
@@ -176,8 +177,9 @@ export default {
   position: fixed;
   width: 400px;
   min-height: 120px;
-  max-height: 745px;
-  overflow: auto;
+  max-height: 750px;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
   box-shadow: 0px 0px 10px rgb(150, 150, 150);
   display: flex;
   flex-direction: column;
