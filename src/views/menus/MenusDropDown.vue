@@ -64,7 +64,7 @@ export default {
         //检查用户是否登录进行判断，如果有就可以跳转到订单页面
         if(getloacalStore('token')){
           setTimeout(()=>{
-            this.$router.push('/order')
+            // this.$router.push('/order')
           },4000)
         }else{
           alert('请登录!')

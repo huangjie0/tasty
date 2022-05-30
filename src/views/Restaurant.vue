@@ -100,10 +100,14 @@ export default {
     ...mapMutations(["closeLoading", "openLoading"]),
     //配置这个方法跳转到菜单页面
     toMenus(item) {
-
+      //在跳转之前打开全局遮罩层
+      this.openLoading()
       this.$router.push(`/menus/${item._id}`);
       setloacalStore('restaurant',item);
-
+      //跳转完成后关闭loading页面
+      setTimeout(()=>{
+        this.closeLoading()
+      },500)
     }
   },
   data() {
