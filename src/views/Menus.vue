@@ -71,8 +71,11 @@ export default {
               foods.push(item_2)
             }
         })
-        //将每个菜馆下面的菜进行一一对应进行装进去
+          //将每个菜馆下面的菜进行一一对应进行装进去
           item_1.foods = foods;
+          //初始化点击开始的值
+          item_1.count = 0;
+          //将数据进行组装
           categories.push(item_1)
         })
         this.categories = categories

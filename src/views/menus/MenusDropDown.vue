@@ -30,6 +30,8 @@
         </div>
       </div>
     </div>
+
+    <MenusFoodsList/>
     <div class="shopping">请选择购物车</div>
   
     <div class="dropdown_1 animated bounce" :class="{dropdowntop:isdropdowntop}" @click="popped()">$0.00</div>
@@ -38,6 +40,7 @@
 
 <script>
 import MenusDropDownList from '@/views/menus/MenusDropDownList.vue'
+import MenusFoodsList from '@/views/menus/MenusFoodsList.vue'
 import {getloacalStore} from '@/common/until.js'
 export default {
     name:'MenusDropDown',
@@ -84,7 +87,8 @@ export default {
       }
     },
     components:{
-      MenusDropDownList 
+      MenusDropDownList,
+      MenusFoodsList
     }
 }
 </script>

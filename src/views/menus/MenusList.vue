@@ -3,7 +3,7 @@
     <div class="smallList" v-for="(item,index) in foodsList" :key="item._id">
       <div class="smallList_1"  @click="showSmallRound(index)">
         <div class="smallRound" v-show="isSmallRound==index">
-          {{number}}
+          {{item.count++}}
         </div>
         <div class="smallfoodsname" :class="{grayFont:!item.available}">
           {{item.name['zh-CN']}}
@@ -24,14 +24,15 @@ export default {
       return {
         //控制个数的数量
         isSmallRound:-1,
-        //初始的数量
-        number:0,
       }
     },
+    mounted(){
+      console.log(this.foodsList);
+    },
     methods: {
+      //鼠标点击是让其显示与隐藏，并且加++
       showSmallRound(index){
         this.isSmallRound=index
-        this.number++
       }
     },
 }
