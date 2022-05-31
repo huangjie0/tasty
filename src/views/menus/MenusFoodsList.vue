@@ -7,9 +7,9 @@
       <div class="addFoodsRight">
           <div class="addFoodsRight_1">{{item.price | currencyUSD}}</div>
           <div class="addFoodsRight_2">
-              <div @click="sub">-</div>
+              <div @click="sub(item)">-</div>
               <div>{{item.count}}</div>
-              <div @click="add">+</div>
+              <div @click="add(item)">+</div>
           </div>
       </div>
   </div>
@@ -45,12 +45,14 @@ export default {
     },
     methods: {
         //点击减号是数量减少
-        sub(){
-            console.log('22222')
+        sub(item){
+            if (item.count>0) {
+                item.count--
+            }
         },
         //点击减号是数量增加
-        add(){
-            console.log('点我++')
+        add(item){
+            item.count++
         }
     },
 }
