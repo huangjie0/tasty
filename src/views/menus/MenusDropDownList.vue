@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!-- 下属的图片列表 -->
     <div class="paymentList">
         <div class="paymentList_1">
             <div>
@@ -22,7 +23,8 @@
 
 <script>
 export default {
-    name:'MenusDropDownList'
+    name:'MenusDropDownList',
+
 }
 </script>
 

@@ -9,9 +9,11 @@
       </div>
       <div class="payment" @click="showMenusDropDownList">
         <div>
-          <img src="@/assets/alipay.png">
+          <!-- 上面要渲染的页面 -->
+          <img :src="paymentImg[index]">
         </div>
       </div>
+      <!-- 下属的图片列表组件 -->
       <MenusDropDownList v-if="isMenusDropDownList"/>
     </div>
     <div class="popped" v-if="isPopped">
@@ -45,7 +47,7 @@ export default {
         // 初始化的图片数组
         paymentImg:['@/assets/alipay.png','@/assets/wechatpay.png','@/assets/applepay_small.png'],
         // 初始化索引值是0，第一个
-        index:0
+        index:1
       }
     },
     mounted(){
