@@ -2,15 +2,15 @@
   <div class="dropdown11">
     <div v-if="isMove" :class="{movePrice:ismovePrice}">
       <div class="close" @click="closeList">
-        <img src="@/assets/close_btn.png" alt="">
+        <img src="@/assets/image/close_btn.png" alt="">
       </div>
       <div class="closeLogo">
-        <img src="@/assets/logo.png" alt="">
+        <img src="@/assets/image/logo.png" alt="">
       </div>
       <div class="payment" @click="showMenusDropDownList">
         <div>
           <!-- 上面要渲染的页面 -->
-          <img :src="paymentImg[index]">
+          <img src="@/assets/image/alipay.png">
         </div>
       </div>
       <!-- 下属的图片列表组件 -->
@@ -45,9 +45,9 @@ export default {
         //准备一个空数组
         Array:[],
         // 初始化的图片数组
-        paymentImg:['@/assets/alipay.png','@/assets/wechatpay.png','@/assets/applepay_small.png'],
+        paymentImg:['@/assets/image/alipay.png','@/assets/image/wechatpay.png','@/assets/image/applepay_small.png'],
         // 初始化索引值是0，第一个
-        index:1
+        index:0
       }
     },
     mounted(){

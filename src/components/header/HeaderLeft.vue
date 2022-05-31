@@ -1,6 +1,6 @@
 <template>
   <div class="headerleft" @click='toRestaurant'>
-      <img class="img_1" src="@/assets/logo.png" alt="">
+      <img class="img_1" src="@/assets/image/logo.png" alt="">
   </div>
 </template>
 

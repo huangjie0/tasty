@@ -29,7 +29,7 @@
               <div class="dishes_3">{{item.items[2] ? item.items[2].name['zh-CN'] : defaultItems[2].name['zh-CN']}}</div>
               <div class="plate">
                 <!-- 盘子 -->
-                <img src="@/assets/dark-dish.png" alt="" />
+                <img src="@/assets/image/dark-dish.png" alt="" />
                 <!-- 菜名 -->
                 <img
                   class="smallFood_img"
@@ -38,7 +38,7 @@
                 />
               </div>
               <div class="plate_1">
-                <img src="@/assets/dark-dish.png" alt="" />
+                <img src="@/assets/image/dark-dish.png" alt="" />
                 <!-- 菜名 -->
                 <img
                   class="smallFood_img_1"
@@ -47,7 +47,7 @@
                 />
               </div>
               <div class="plate_2">
-                <img src="@/assets/dark-dish.png" alt="" />
+                <img src="@/assets/image/dark-dish.png" alt="" />
                 <!-- 菜名 -->
                 <img
                   class="smallFood_img_2"

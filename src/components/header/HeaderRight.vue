@@ -1,6 +1,6 @@
 <template>
   <div class="headerright" @click="bouncedClick">
-      <img class="img_2" src="@/assets/profile-icon.png" alt="">
+      <img class="img_2" src="@/assets/image/profile-icon.png" alt="">
       <SmallMask v-if="isBounced"/>
   </div>
 </template>

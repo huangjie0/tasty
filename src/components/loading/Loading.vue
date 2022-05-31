@@ -1,7 +1,7 @@
 <template>
   <div class="loading">
       <div class="loading_1">
-          <img src="@/assets/loading.gif" alt="">
+          <img src="@/assets/image/loading.gif" alt="">
       </div>
   </div>
 </template>
