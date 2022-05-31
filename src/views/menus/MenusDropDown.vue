@@ -76,12 +76,13 @@ export default {
             //将列表清除发送给兄弟组件
         }
         if(getloacalStore('token')){
-          setTimeout(()=>{
+          // setTimeout(()=>{
             // this.$router.push('/order')
-          },4000)
+          // },4000)
         }else{
           alert('请登录!')
           this.$router.push('/login')
+
         }
       },
       //判断图片是否显示与隐藏
