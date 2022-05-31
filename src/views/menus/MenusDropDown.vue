@@ -34,7 +34,7 @@
     <div class="shopping" v-if="fullPrice==0">请选择购物车</div>
   <!-- 即将要修改的值 -->
     <div class="dropdown_1 animated bounce" :class="[{dropdowntop:isdropdowntop},
-    {blackBackground:fullPrice!=='' ? 'blackBackground':''}]" 
+    {blackBackground:fullPrice > 0 ? 'blackBackground' :''}]" 
     @click="popped()">{{fullPrice | currencyUSD}}</div>
   </div>
 </template>
@@ -78,6 +78,14 @@ export default {
         this.isdropdowntop=true
         this.ismovePrice=true
         this.isMove=true
+        //检查用户是否下单可以点击产生动画
+        if(this.fullPrice==0){
+          //如果用户什么都没买将所有的动画效果取消
+            this.isPopped=false;
+            this.isdropdowntop=false
+            this.ismovePrice=false
+            this.isMove=false
+        }
         //检查用户是否登录进行判断，如果有就可以跳转到订单页面
         if(getloacalStore('token')){
           setTimeout(()=>{
@@ -183,9 +191,10 @@ export default {
 .dropdowntop{
   top:210px;
 }
+
 .blackBackground{
   background-color: black !important;
-  color: white !important;
+  color: white;
 }
 .dropdown{
   z-index: 20000;
@@ -238,10 +247,10 @@ export default {
     width: 350px;
     height: 50px;
     border-radius: 30px;
-    background-color: rgb(189, 189, 189);
     line-height: 50px;
     text-align: center;
     font-size: 20px;
+    background-color:rgb(189, 189, 189);
     color: white;
   }
 }

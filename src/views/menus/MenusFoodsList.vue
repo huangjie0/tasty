@@ -1,6 +1,7 @@
 <template>
 <div>
-     <div class="addFoods" v-for="(item,index) in menusFoodsList" :key="index">
+    <!-- v-if和v-for不推荐在同一标签使用 -->
+    <div class="addFoods" v-if="item.count>0" v-for="(item,index) in menusFoodsList" :key="index">
       <div class="addFoodsLeft">
           {{item.name['zh-CN']}}
       </div>
@@ -12,7 +13,7 @@
               <div @click="add(item)">+</div>
           </div>
       </div>
-  </div>
+    </div>
 </div>
  
 </template>

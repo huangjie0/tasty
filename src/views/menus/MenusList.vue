@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="smallList" v-for="(item,index) in foodsList" :key="item.nanoid">
+    <div class="smallList"  v-for="item in foodsList" :key="item.nanoid">
       <div class="smallList_1"  @click="showSmallRound(item)">
         <div class="smallRound" v-show="item.count > 0">
           {{item.count}}
