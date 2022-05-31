@@ -1,15 +1,15 @@
 <template>
 <div>
-     <div class="addFoods" v-for="(item,index) in  menusFoodsList" :key="index">
+     <div class="addFoods" v-for="(item,index) in menusFoodsList" :key="index">
       <div class="addFoodsLeft">
           {{item.name['zh-CN']}}
       </div>
       <div class="addFoodsRight">
           <div class="addFoodsRight_1">{{item.price | currencyUSD}}</div>
           <div class="addFoodsRight_2">
-              <div>-</div>
+              <div @click="sub">-</div>
               <div>{{item.count}}</div>
-              <div>+</div>
+              <div @click="add">+</div>
           </div>
       </div>
   </div>
@@ -22,7 +22,7 @@ export default {
     name:'MenusFoodsList',
     data() {
         return {
-            menusFoodsList:[]
+            menusFoodsList:[],
         }
     },
     //当组件创建时候接受到的值
@@ -31,10 +31,28 @@ export default {
         this.$bus.$on('foodList',v=>{
             //在下一次节点更新时候调用的函数
             this.$nextTick(function(){
-                this.menusFoodsList.push(v);
+                //判断是否是同一个元素
+                if(!this.menusFoodsList.includes(v)){
+                    //不包含的元素添加到数组中
+                    this.menusFoodsList.push(v);
+                }
             })
         })
-    }
+    },
+    updated(){
+        //组件挂载完毕后将列表发送给兄弟组件
+        this.$bus.$emit('fullPrice',this.menusFoodsList);
+    },
+    methods: {
+        //点击减号是数量减少
+        sub(){
+            console.log('22222')
+        },
+        //点击减号是数量增加
+        add(){
+            console.log('点我++')
+        }
+    },
 }
 </script>
 

@@ -31,9 +31,11 @@
       </div>
     </div>
     <MenusFoodsList/>
-    <div class="shopping">请选择购物车</div>
-  
-    <div class="dropdown_1 animated bounce" :class="{dropdowntop:isdropdowntop}" @click="popped()">$0.00</div>
+    <div class="shopping" v-if="fullPrice==0">请选择购物车</div>
+  <!-- 即将要修改的值 -->
+    <div class="dropdown_1 animated bounce" :class="[{dropdowntop:isdropdowntop},
+    {blackBackground:fullPrice!=='' ? 'blackBackground':''}]" 
+    @click="popped()">{{fullPrice | currencyUSD}}</div>
   </div>
 </template>
 
@@ -50,11 +52,24 @@ export default {
         ismovePrice:false,
         isMove:false,
         isMenusDropDownList:false,
+        //准备一个空的价格
+        fullPrice:'',
         // 初始化的图片数组
         // paymentImg:['@/assets/alipay.png','@/assets/wechatpay.png','@/assets/applepay_small.png'],
         //初始化索引值是0，第一个
         // index:0
       }
+    },
+    mounted(){
+      //在组件挂载完毕后所触发的事件
+      this.$bus.$on('fullPrice',v=>{
+        //将数据灌进去
+        var fullPrice=0;
+        v.forEach(item=>{
+          fullPrice+=item.price*item.count
+        })
+        this.fullPrice = fullPrice
+      })
     },
     methods: {
       //点击的时候弹出菜单提示框
@@ -168,6 +183,10 @@ export default {
 .dropdowntop{
   top:210px;
 }
+.blackBackground{
+  background-color: black !important;
+  color: white !important;
+}
 .dropdown{
   z-index: 20000;
   background-color: rgb(255, 255, 255);
@@ -178,8 +197,8 @@ export default {
   width: 400px;
   min-height: 120px;
   max-height: 750px;
-  overflow-x: hidden !important;
-  overflow-y: auto !important;
+  overflow-x: hidden;
+  overflow-y: auto;
   box-shadow: 0px 0px 10px rgb(150, 150, 150);
   display: flex;
   flex-direction: column;

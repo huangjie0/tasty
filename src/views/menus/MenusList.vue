@@ -10,7 +10,7 @@
         </div>
       </div>
       <div class="smallList_2" :class="{grayFont:!item.available}">
-        {{item.price*item.count | currencyUSD}}
+        {{item.price | currencyUSD}}
       </div>
     </div>
   </div>
@@ -20,12 +20,6 @@
 export default {
     name:"MenusList",
     props:['foodsList'],
-    data() {
-      return {
-        //控制个数的数量
-        isSmallRound:-1,
-      }
-    },
     methods: {
       //鼠标点击是让其显示与隐藏，并且加++
       showSmallRound(item){
