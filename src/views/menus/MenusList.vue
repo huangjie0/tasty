@@ -2,7 +2,7 @@
   <div>
     <div class="smallList"  v-for="item in foodsList" :key="item.nanoid">
       <div class="smallList_1"  @click="showSmallRound(item)">
-        <div class="smallRound" v-show="item.count > 0">
+        <div class="smallRound" v-show="item.count > 0 && item.available">
           {{item.count}}
         </div>
         <div class="smallfoodsname" :class="{grayFont:!item.available}">
@@ -25,7 +25,10 @@ export default {
       showSmallRound(item){
         item.count +=1;
         //发送数据
-        this.$bus.$emit('foodList',item)
+        if(item.available){
+          //判断available属性的是true,或者false来决定是否发送数据
+          this.$bus.$emit('foodList',item)
+        }
       }
     },
 }
