@@ -1,5 +1,5 @@
 <template>
-  <div class="dropdown_2">
+  <div class="dropdown11">
     <div v-if="isMove" :class="{movePrice:ismovePrice}">
       <div class="close" @click="closeList">
         <img src="@/assets/close_btn.png" alt="">
@@ -41,11 +41,11 @@ export default {
         //准备一个空的价格
         fullPrice:'',
         //准备一个空数组
-        Array:[]
+        Array:[],
         // 初始化的图片数组
-        // paymentImg:['@/assets/alipay.png','@/assets/wechatpay.png','@/assets/applepay_small.png'],
-        //初始化索引值是0，第一个
-        // index:0
+        paymentImg:['@/assets/alipay.png','@/assets/wechatpay.png','@/assets/applepay_small.png'],
+        // 初始化索引值是0，第一个
+        index:0
       }
     },
     mounted(){
@@ -66,10 +66,6 @@ export default {
         this.isdropdowntop=true
         this.ismovePrice=true
         this.isMove=true
-        if(!this.isPopped || !this.isMove || !this.ismovePrice || !this.isdropdowntop){
-          //检查用户是否登录进行判断，如果有就可以跳转到订单页面
-        this.$bus.$emit('clearList',this.Array)
-        }
         //检查用户是否下单可以点击产生动画
         if(this.fullPrice==0){
           //如果用户什么都没买将所有的动画效果取消
@@ -88,6 +84,7 @@ export default {
           this.$router.push('/login')
         }
       },
+      //判断图片是否显示与隐藏
       showMenusDropDownList(){
         if(this.isMenusDropDownList){
           this.isMenusDropDownList=false
@@ -131,7 +128,6 @@ export default {
   z-index: -1;
 }
 .popped{
-  height:670px;
   width: 400px;
   border-bottom:2px solid  rgb(190, 190, 190);
   .foodList{
@@ -189,8 +185,7 @@ export default {
   background-color: black !important;
   color: white;
 }
-.dropdown_2{
-  z-index: 20000;
+.dropdown11{
   background-color: rgb(255, 255, 255);
   cursor: pointer;
   right: 305px;

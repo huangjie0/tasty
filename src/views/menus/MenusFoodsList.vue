@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="overFloat">
     <div class="addFoods" v-for="(item,index) in list" :key="index">
       <div class="addFoodsLeft">
           {{item.name['zh-CN']}}
@@ -14,11 +14,10 @@
       </div>
     </div>
 </div>
- 
 </template>
 
 <script>
-import {setloacalStore,getloacalStore} from '@/common/until'
+import {setloacalStore} from '@/common/until'
 export default {
     name:'MenusFoodsList',
     data() {
@@ -41,7 +40,6 @@ export default {
                 }
             })
         })
-        
     },
     updated(){
         //组件挂载完毕后将列表发送给兄弟组件
@@ -69,7 +67,6 @@ export default {
         //通过计算属性所的出来的列表过滤出来
         list(){
             //从本地浏览器中取数据,如果有,则渲染,如果没有,则渲染用户要点击的商品
-            
             return this.menusFoodsList.filter((item)=>{
                 return item.count > 0
             })
@@ -79,6 +76,10 @@ export default {
 </script>
 
 <style lang='less' scoped>
+.overFloat{
+    overflow: auto;
+    max-height: 700px;
+}
 .addFoods{
     width: 400px;
     height: 50px;

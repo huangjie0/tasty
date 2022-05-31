@@ -3,17 +3,17 @@
     <div class="paymentList">
         <div class="paymentList_1">
             <div>
-            <img src="@/assets/alipay.png" alt="">
+              <img src="@/assets/alipay.png" alt="">
             </div>
         </div>
         <div class="paymentList_2">
             <div>
-            <img src="@/assets/wechatpay.png" alt="">
+              <img src="@/assets/wechatpay.png" alt="">
             </div>
         </div>
         <div class="paymentList_3">
             <div>
-            <img src="@/assets/applepay_small.png" alt="">
+              <img src="@/assets/applepay_small.png" alt="">
             </div>
         </div>
     </div>
