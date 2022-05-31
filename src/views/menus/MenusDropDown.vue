@@ -1,5 +1,5 @@
 <template>
-  <div class="dropdown">
+  <div class="dropdown_2">
     <div v-if="isMove" :class="{movePrice:ismovePrice}">
       <div class="close" @click="closeList">
         <img src="@/assets/close_btn.png" alt="">
@@ -15,27 +15,13 @@
       <MenusDropDownList v-if="isMenusDropDownList"/>
     </div>
     <div class="popped" v-if="isPopped">
-      <!-- 用户点了餐的列表 -->
-      <div class="foodList"> 
-        <div class="foodList_1">香菇肉末米线 不辣</div>
-        <div class="foodList_2">
-          <div class="foodListPrice">
-            ￥20.00
-          </div>
-          <div class="foodListPrice_1">
-            <div>-</div>
-            <div>1</div>
-            <div>+</div>
-          </div>
-        </div>
-      </div>
     </div>
     <MenusFoodsList/>
     <div class="shopping" v-if="fullPrice==0">请选择购物车</div>
   <!-- 即将要修改的值 -->
     <div class="dropdown_1 animated bounce" :class="[{dropdowntop:isdropdowntop},
     {blackBackground:fullPrice > 0 ? 'blackBackground' :''}]" 
-    @click="popped()">{{fullPrice | currencyUSD}}</div>
+    @click="popped()">{{fullPrice | currencyUSD}} {{fullPrice!==0 ? "请下单" :''}}</div>
   </div>
 </template>
 
@@ -54,6 +40,8 @@ export default {
         isMenusDropDownList:false,
         //准备一个空的价格
         fullPrice:'',
+        //准备一个空数组
+        Array:[]
         // 初始化的图片数组
         // paymentImg:['@/assets/alipay.png','@/assets/wechatpay.png','@/assets/applepay_small.png'],
         //初始化索引值是0，第一个
@@ -78,6 +66,10 @@ export default {
         this.isdropdowntop=true
         this.ismovePrice=true
         this.isMove=true
+        if(!this.isPopped || !this.isMove || !this.ismovePrice || !this.isdropdowntop){
+          //检查用户是否登录进行判断，如果有就可以跳转到订单页面
+        this.$bus.$emit('clearList',this.Array)
+        }
         //检查用户是否下单可以点击产生动画
         if(this.fullPrice==0){
           //如果用户什么都没买将所有的动画效果取消
@@ -85,8 +77,8 @@ export default {
             this.isdropdowntop=false
             this.ismovePrice=false
             this.isMove=false
+            //将列表清除发送给兄弟组件
         }
-        //检查用户是否登录进行判断，如果有就可以跳转到订单页面
         if(getloacalStore('token')){
           setTimeout(()=>{
             // this.$router.push('/order')
@@ -106,6 +98,7 @@ export default {
       closeList(){
         this.isPopped=false
         this.isMove=false
+        //当点击清除按钮,
       }
     },
     components:{
@@ -196,7 +189,7 @@ export default {
   background-color: black !important;
   color: white;
 }
-.dropdown{
+.dropdown_2{
   z-index: 20000;
   background-color: rgb(255, 255, 255);
   cursor: pointer;

@@ -1,7 +1,6 @@
 <template>
 <div>
-    <!-- v-if和v-for不推荐在同一标签使用 -->
-    <div class="addFoods" v-if="item.count>0" v-for="(item,index) in menusFoodsList" :key="index">
+    <div class="addFoods" v-for="(item,index) in list" :key="index">
       <div class="addFoodsLeft">
           {{item.name['zh-CN']}}
       </div>
@@ -19,6 +18,7 @@
 </template>
 
 <script>
+import {setloacalStore,getloacalStore} from '@/common/until'
 export default {
     name:'MenusFoodsList',
     data() {
@@ -36,13 +36,22 @@ export default {
                 if(!this.menusFoodsList.includes(v)){
                     //不包含的元素添加到数组中
                     this.menusFoodsList.push(v);
+                    //将用户的点击的信息存在浏览本地存储中
+                    setloacalStore('cars',this.menusFoodsList)
                 }
             })
         })
+        
     },
     updated(){
         //组件挂载完毕后将列表发送给兄弟组件
         this.$bus.$emit('fullPrice',this.menusFoodsList);
+        //调用接受的函数,来清空数据
+        this.$bus.$on('clearList',(v)=>{
+            this.$nextTick(function(){
+                this.menusFoodsList=v
+            })
+        })
     },
     methods: {
         //点击减号是数量减少
@@ -56,6 +65,16 @@ export default {
             item.count++
         }
     },
+    computed:{
+        //通过计算属性所的出来的列表过滤出来
+        list(){
+            //从本地浏览器中取数据,如果有,则渲染,如果没有,则渲染用户要点击的商品
+            
+            return this.menusFoodsList.filter((item)=>{
+                return item.count > 0
+            })
+        }
+    }
 }
 </script>
 
