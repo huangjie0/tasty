@@ -2,17 +2,17 @@
   <div>
     <!-- 下属的图片列表 -->
     <div class="paymentList">
-        <div class="paymentList_1">
+        <div class="paymentList_1" @click="payment_1">
             <div>
               <img src="@/assets/image/alipay.png" alt="">
             </div>
         </div>
-        <div class="paymentList_2">
+        <div class="paymentList_2" @click="payment_2">
             <div>
               <img src="@/assets/image/wechatpay.png" alt="">
             </div>
         </div>
-        <div class="paymentList_3">
+        <div class="paymentList_3" @click="payment_3">
             <div>
               <img src="@/assets/image/applepay_small.png" alt="">
             </div>
@@ -24,6 +24,18 @@
 <script>
 export default {
     name:'MenusDropDownList',
+    methods:{
+      payment_1(){
+        this.$emit('payment',0)
+      },
+      payment_2(){
+        //子传父
+        this.$emit('payment',1)
+      },
+      payment_3(){
+        this.$emit('payment',2)
+      }
+    }
 
 }
 </script>

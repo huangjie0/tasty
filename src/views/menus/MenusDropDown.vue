@@ -10,11 +10,11 @@
       <div class="payment" @click="showMenusDropDownList">
         <div>
           <!-- 上面要渲染的页面 -->
-          <img src="@/assets/image/alipay.png">
+          <img :src="paymentImg[index].src">
         </div>
       </div>
       <!-- 下属的图片列表组件 -->
-      <MenusDropDownList v-if="isMenusDropDownList"/>
+      <MenusDropDownList @payment='payment' v-if="isMenusDropDownList"/>
     </div>
     <div class="popped" v-if="isPopped">
     </div>
@@ -30,7 +30,8 @@
 <script>
 import MenusDropDownList from '@/views/menus/MenusDropDownList.vue'
 import MenusFoodsList from '@/views/menus/MenusFoodsList.vue'
-import {getloacalStore} from '@/common/until.js'
+import {getloacalStore,setloacalStore} from '@/common/until.js'
+import {olderPut} from '@/api/order/index'
 export default {
     name:'MenusDropDown',
     data() {
@@ -45,7 +46,8 @@ export default {
         //准备一个空数组
         Array:[],
         // 初始化的图片数组
-        paymentImg:['@/assets/image/alipay.png','@/assets/image/wechatpay.png','@/assets/image/applepay_small.png'],
+        paymentImg:[{src: require('@/assets/image/alipay.png'),payment:'alipay'},{src:require('@/assets/image/wechatpay.png'),payment:'wechat'},
+        {src:require('@/assets/image/applepay_small.png'),payment:'applePay'}],
         // 初始化索引值是0，第一个
         index:0
       }
@@ -60,8 +62,14 @@ export default {
         })
         this.fullPrice = fullPrice
       })
+      //当页面挂载完成时候,将用户的支付方式存储在本地浏览器中
+      setloacalStore('payment','')
+
     },
     methods: {
+       payment(v){
+        this.index=v
+      },
       //点击的时候弹出菜单提示框
       popped(){
         this.isPopped=true
@@ -77,10 +85,36 @@ export default {
             this.isMove=false
             //将列表清除发送给兄弟组件
         }
+        //点击在本地浏览器中存储一份支付方式
+        setloacalStore('payment',this.paymentImg[this.index].payment)
+
         if(getloacalStore('token')){
-          // setTimeout(()=>{
-            // this.$router.push('/order')
-          // },4000)
+          //如果有token值则发送用户put请求
+          //发送order请求
+           var payment=this.paymentImg[this.index].payment
+           var restaurantId = getloacalStore('restaurant')._id
+           var cart = getloacalStore('cars')
+           var userId= getloacalStore('users')._id
+
+          //在左侧动画出来之后发请求
+          if(this.isMove){
+            olderPut(payment,cart,userId,restaurantId).then(res=>{
+                console.log(res)
+            
+            }).catch(err=>{
+            // 在请求发成功时执行异步操作
+            if(err.response.data.code=='auth-failed'){
+              //提示用户重复登录的信息
+              alert('用户过期,请重新登录!');
+              //同时清理用户的user信息
+              setloacalStore('users');
+              //跳转到登录页面
+              this.$router.push('/login');
+            }
+            console.log(err)
+            }).finally(()=>{
+            })
+          }
         }else{
           alert('请登录!')
           this.$router.push('/login')
@@ -103,7 +137,7 @@ export default {
     },
     components:{
       MenusDropDownList,
-      MenusFoodsList
+      MenusFoodsList,
     }
 }
 </script>
