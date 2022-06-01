@@ -1,12 +1,14 @@
 import axios from "axios";
+import { getloacalStore } from '@/common/until'
 const instance = axios.create({
     timeout:'5000'
 })
 // 添加请求拦截器
 instance.interceptors.request.use(function (config) {
   //在请求拦截器中配置token值
-  if(localStorage.getItem('token')){
-      config.headers.Authorization=localStorage.getItem('token')       
+  const token = getloacalStore('token') 
+  if(token){
+      config.headers.Authorization=  token    
   }
   return config;
 

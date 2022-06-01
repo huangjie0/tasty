@@ -16,5 +16,5 @@ export  function olderPut(payment,cart,userId,restaurantId){
 
 //发送消息获取order信息
 export  function olderGet(userId){
-    return instance.put(`/api/order/${userId}`)
+    return instance.get(`/api/order/${userId}`)
 }

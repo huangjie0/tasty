@@ -30,7 +30,7 @@
 <script>
 import MenusDropDownList from '@/views/menus/MenusDropDownList.vue'
 import MenusFoodsList from '@/views/menus/MenusFoodsList.vue'
-import {getloacalStore,setloacalStore} from '@/common/until.js'
+import {getloacalStore,setloacalStore,removelocalStore} from '@/common/until.js'
 import {olderPut} from '@/api/order/index'
 export default {
     name:'MenusDropDown',
@@ -99,26 +99,27 @@ export default {
           //在左侧动画出来之后发请求
           if(this.isMove){
             olderPut(payment,cart,userId,restaurantId).then(res=>{
-                console.log(res)
-            
+              //返回来的结果
+              console.log(res);
+              //跳转order页面
+                this.$router.push('/order')
             }).catch(err=>{
             // 在请求发成功时执行异步操作
             if(err.response.data.code=='auth-failed'){
               //提示用户重复登录的信息
               alert('用户过期,请重新登录!');
-              //同时清理用户的user信息
-              setloacalStore('users');
-              //跳转到登录页面
+              // 跳转到登录页面
               this.$router.push('/login');
+              //同时清理用户的user信息
+              removelocalStore('users');
             }
-            console.log(err)
             }).finally(()=>{
+
             })
           }
         }else{
           alert('请登录!')
           this.$router.push('/login')
-
         }
       },
       //判断图片是否显示与隐藏

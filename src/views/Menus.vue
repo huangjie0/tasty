@@ -32,6 +32,7 @@
 <script>
 //导入发请求模块
 import menusget from '@/api/menus/index.js'
+import { olderGet } from '@/api/order'
 import {getloacalStore} from '@/common/until.js'
 import MenusDropDown from '@/views/menus/MenusDropDown.vue'
 import MenusList from '@/views/menus/MenusList.vue'
@@ -53,6 +54,7 @@ export default {
         MenusList
     },
     created(){
+      olderGet('628b2c5edd3bc85851d4f2eb')
       //从本地浏览器里面取数据
       const restaurant= getloacalStore('restaurant');
       //将数据灌进去
