@@ -23,7 +23,7 @@
   <!-- 即将要修改的值 -->
     <div class="dropdown_1 animated bounce" :class="[{dropdowntop:isdropdowntop},
     {blackBackground:fullPrice > 0 ? 'blackBackground' :''}]" 
-    @click="popped()">{{fullPrice | currencyUSD}} {{fullPrice!==0 ? "请下单" :''}}</div>
+    @click="popped()">{{fullPrice | currencyUSD}} {{fullPrice==0 ? "请下单" :"请确认"}}</div>
   </div>
 </template>
 
@@ -97,7 +97,19 @@ export default {
           //在左侧动画出来之后发请求
           //根据用户的用哪种支付去发请求
           olderPut(payment,cart,userId,restaurantId).then(res=>{
-            this.$router.push('/order')
+            if(confirm('确定要支付吗?')){
+              //告诉用户支付成功
+              alert('支付成功');
+              //再次存入用户登录信息
+              setloacalStore('payment',payment)
+              //跳转到历史订单页面
+              this.$router.push('/order')
+              //将用户id存入本地浏览器中
+              setloacalStore('userId',userId);
+            }else{
+              //如果用户取消了
+              alert('支付失败')
+            }
           }).catch(err=>{
             // 在请求发成功时执行异步操作
             if(err.response.data.code=='auth-failed'){
@@ -113,6 +125,7 @@ export default {
         }else{
           alert('请登录!')
           this.$router.push('/login')
+          removelocalStore('users');
         }
       },
       //判断图片是否显示与隐藏

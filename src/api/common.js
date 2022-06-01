@@ -8,10 +8,9 @@ instance.interceptors.request.use(function (config) {
   //在请求拦截器中配置token值
   const token = getloacalStore('token') 
   if(token){
-      config.headers.Authorization=  token    
+      config.headers.Authorization=token    
   }
   return config;
-
   }, function (error) {
     // 对请求错误做些什么
     return Promise.reject(error);
