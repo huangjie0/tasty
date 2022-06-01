@@ -93,6 +93,7 @@ export default {
 .register{
   margin-top: 20px;
   font-size: 18px;
+  cursor: pointer;
 }
 
 .login_3{
@@ -105,6 +106,7 @@ export default {
   text-align: center;
   line-height: 40px;
   font-size: 20px;
+  cursor: pointer;
 }
 input::-webkit-input-placeholder {
     color: #aab2bd;

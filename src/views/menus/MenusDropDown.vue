@@ -97,7 +97,7 @@ export default {
           //在左侧动画出来之后发请求
           //根据用户的用哪种支付去发请求
           olderPut(payment,cart,userId,restaurantId).then(res=>{
-              this.$router.push('/order')
+            this.$router.push('/order')
           }).catch(err=>{
             // 在请求发成功时执行异步操作
             if(err.response.data.code=='auth-failed'){
