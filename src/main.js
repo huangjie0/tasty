@@ -4,6 +4,7 @@ import router from '@/router/index'
 import VueRouter from 'vue-router' 
 import store from '@/store/index'
 import 'animate.css';
+import moment from 'moment'
 
 Vue.config.productionTip = false
 //防止路由连续跳转的情况底层处理
@@ -15,6 +16,10 @@ VueRouter.prototype.push = function push(location, onResolve, onReject) {
 //全局引入vue过滤器
 Vue.filter('currencyUSD',function(value){
   return '$'+ value/100
+})
+
+Vue.filter('timeFormat',function(value){
+  return moment(value).format('YYYY-MM-DD HH:mm:ss')
 })
 
 new Vue({

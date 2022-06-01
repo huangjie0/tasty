@@ -95,6 +95,7 @@ export default {
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
+  background-color: white;
   .login_bounced_1{
     width: 280px;
     height: 50px;

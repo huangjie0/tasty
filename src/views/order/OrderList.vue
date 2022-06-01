@@ -1,41 +1,67 @@
 <template>
-  <div class="orderList">
-    <div class="restaurantTitle">
-        <div class="restaurantTitle_1">
-            邓记云南过桥
+<div class="order_right">
+    <div class="orderList" v-for="item in restaurantList" :key="item._id">
+        <div class="restaurantTitle">
+            <div class="restaurantTitle_1">
+                {{item.restaurant.name['zh-CN']}}
+            </div>
+            <div class="restaurantTitle_time">
+                {{item.createdAt | timeFormat}}
+            </div>
         </div>
-        <div class="restaurantTitle_time">
-            2021-04-13 11:30
+        <div class="orderListBody">
+            <div class="orderListBody_1">
+                 <div class="orderListBody_2" v-for="(item_2,index) in item.cart" :key="index">
+                    <div>{{item_2.name['zh-CN']}}</div>
+                    <div class="orderListBody_3">{{item_2.count}}</div>
+                </div>
+            </div>
+        </div>
+        <div class="orderListBody_2">
+            <div>总价:</div>
+            <div>$119.20</div>
+        </div>
+        <div class="more_1">
+            <div class="more">
+            更多
+            </div>
         </div>
     </div>
-     <div class="orderListBody">
-        <div class="orderListBody_1">
-            <OrderList_one/>
-        </div>
-    </div>
-    <div class="orderListBody_2">
-        <div>总价:</div>
-        <div>$119.20</div>
-    </div>
-    <div class="more_1">
-        <div class="more">
-           更多
-        </div>
-    </div>
-  </div>
+</div>
+  
 </template>
 
 <script>
-import OrderList_one from '@/views/order/OrderList_one'
 export default {
     name:'OrderList',
-    components:{
-        OrderList_one
-    }
+    props:['restaurantList']
 }
 </script>
 
 <style scoped lang='less'>
+ .orderListBody_2{
+    width: 230px;
+    height: 35px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    .orderListBody_3{
+        width: 30px;
+        height: 30px;
+        background-color: rgb(189, 189, 189);
+        color: white;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 35px;
+        font-size: 25px;
+    }
+}
+.order_right{
+  width: 70%;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
 .more{
     width: 60px;
     height: 30px;
@@ -58,7 +84,7 @@ export default {
         align-items: center;
     }
     .orderListBody_2{
-        width: 300px;
+        width: 218px;
         height: 70px;
         display: flex;
         justify-content: space-around;

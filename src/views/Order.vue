@@ -1,21 +1,17 @@
 <template>
   <div>
-      <div class="order">
-          <div class="order_1"> 
-              <div class="order_left">
-                  <div class="history_order">
-                    历史订单
-                    <div class="underline">
-                    </div>
-
+    <div class="order">
+        <div class="order_1"> 
+            <div class="order_left">
+                <div class="history_order">
+                  历史订单
+                  <div class="underline">
                   </div>
-              </div>
-              <div class="order_right">
-                  <OrderList/>
-                  <OrderList/>
-              </div>         
-          </div>
-      </div>
+                </div>
+            </div>
+              <OrderList :restaurantList="restaurantList"/>
+        </div>
+    </div>
   </div>
 </template>
 
@@ -25,6 +21,11 @@ import {olderGet} from '@/api/order/index'
 import OrderList from '@/views/order/OrderList.vue'
 export default {
     name:'Order',
+    data() {
+      return {
+        restaurantList:[]
+      }
+    },
     components:{
       OrderList
     },
@@ -36,10 +37,8 @@ export default {
        //发送请求
       var userId=getloacalStore('userId');
       olderGet(userId).then(res=>{
-        console.log(res)
-        
-
-
+        this.restaurantList = res.data
+        console.log(this.restaurantList)
       }).catch(err=>{
         // 在请求发成功时执行异步操作
         if(err.response.data.code=='auth-failed'){
@@ -56,12 +55,6 @@ export default {
 </script>
 
 <style lang='less' scoped>
-.order_right{
-  width: 70%;
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-}
 .order{
   position: relative;
   top: 100px;
