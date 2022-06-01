@@ -10,7 +10,7 @@ export function encode (str){
 }
 
 //发送put请求模块
-export  function olderPut(payment,cart,userId,restaurantId){
+export function olderPut(payment,cart,userId,restaurantId){
     return instance.put('/api/order',{payment:payment,cart:cart,userId:userId,restaurantId:restaurantId})
 }
 

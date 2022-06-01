@@ -43,6 +43,8 @@ export default {
                     alert('注册成功!')
                      //关闭弹窗
                     this.$emit('isconfirm')
+                    //跳转到登录页面
+                    this.$router.push('/login')
                     }).catch(err=>{
                         console.log(err)
                     }).finally(()=>{
