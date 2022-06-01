@@ -47,9 +47,9 @@ export default {
         Array:[],
         // 初始化的图片数组
         paymentImg:[{src: require('@/assets/image/alipay.png'),payment:'alipay'},{src:require('@/assets/image/wechatpay.png'),payment:'wechat'},
-        {src:require('@/assets/image/applepay_small.png'),payment:'applePay'}],
+        {src:require('@/assets/image/applepay_small.png'),payment:'applePay'},{src: require('@/assets/image/alipay.png')}],
         // 初始化索引值是0，第一个
-        index:0
+        index:3
       }
     },
     mounted(){
@@ -64,10 +64,9 @@ export default {
       })
       //当页面挂载完成时候,将用户的支付方式存储在本地浏览器中
       setloacalStore('payment','')
-
     },
     methods: {
-       payment(v){
+      payment(v){
         this.index=v
       },
       //点击的时候弹出菜单提示框
@@ -97,20 +96,9 @@ export default {
            var userId= getloacalStore('users')._id
           //在左侧动画出来之后发请求
           //根据用户的用哪种支付去发请求
-          
-
-
-
-
-
-
-
-
-
-
-            olderPut(payment,cart,userId,restaurantId).then(res=>{
-              console.log(res)
-            }).catch(err=>{
+          olderPut(payment,cart,userId,restaurantId).then(res=>{
+              this.$router.push('/order')
+          }).catch(err=>{
             // 在请求发成功时执行异步操作
             if(err.response.data.code=='auth-failed'){
               //提示用户重复登录的信息
@@ -121,8 +109,7 @@ export default {
               removelocalStore('users');
             }
             }).finally(()=>{
-
-            })
+          })
         }else{
           alert('请登录!')
           this.$router.push('/login')
