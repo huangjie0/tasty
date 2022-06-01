@@ -95,14 +95,21 @@ export default {
            var restaurantId = getloacalStore('restaurant')._id
            var cart = getloacalStore('cars')
            var userId= getloacalStore('users')._id
-
           //在左侧动画出来之后发请求
-          if(this.isMove){
+          //根据用户的用哪种支付去发请求
+          
+
+
+
+
+
+
+
+
+
+
             olderPut(payment,cart,userId,restaurantId).then(res=>{
-              //返回来的结果
-              console.log(res);
-              //跳转order页面
-                this.$router.push('/order')
+              console.log(res)
             }).catch(err=>{
             // 在请求发成功时执行异步操作
             if(err.response.data.code=='auth-failed'){
@@ -116,7 +123,6 @@ export default {
             }).finally(()=>{
 
             })
-          }
         }else{
           alert('请登录!')
           this.$router.push('/login')
