@@ -164,7 +164,7 @@ export default {
   animation-duration: 0.5s;
   position: fixed;
   width: 400px;
-  height: 665px;
+  height: 746px;
   background-color: rgb(255, 255, 255);
   box-shadow: 0px 0px 10px rgb(150, 150, 150);
   top: 210px;
@@ -236,7 +236,6 @@ export default {
   bottom: 45px;
   position: fixed;
   width: 400px;
-  min-height: 120px;
   max-height: 750px;
   overflow-x: hidden;
   overflow-y: auto;
