@@ -19,7 +19,7 @@
         </div>
         <div class="orderListBody_2">
             <div>总价:</div>
-            <div>11111</div>
+            <div>111</div>
         </div>
         <div class="more_1">
             <div class="more">
@@ -35,6 +35,11 @@
 export default {
     name:'OrderList',
     props:['restaurantList'],
+    created(){
+        setTimeout(()=>{
+            console.log(this.restaurantList)
+        },1000)
+    }
 }
 </script>
 

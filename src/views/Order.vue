@@ -9,7 +9,7 @@
                   </div>
                 </div>
             </div>
-              <OrderList :restaurantList="restaurantList"/>
+            <OrderList :restaurantList="restaurantList"/>
         </div>
     </div>
   </div>
@@ -38,7 +38,6 @@ export default {
       var userId=getloacalStore('userId');
       olderGet(userId).then(res=>{
         this.restaurantList = res.data
-        console.log(this.restaurantList)
       }).catch(err=>{
         // 在请求发成功时执行异步操作
         if(err.response.data.code=='auth-failed'){
