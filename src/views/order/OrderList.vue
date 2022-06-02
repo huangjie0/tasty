@@ -19,7 +19,7 @@
         </div>
         <div class="orderListBody_2">
             <div>总价:</div>
-            <div>$119.20</div>
+            <div>11111</div>
         </div>
         <div class="more_1">
             <div class="more">
@@ -34,7 +34,7 @@
 <script>
 export default {
     name:'OrderList',
-    props:['restaurantList']
+    props:['restaurantList'],
 }
 </script>
 
@@ -76,6 +76,7 @@ export default {
     width: 300px;
     height: 500px;
     border: 1px solid rgb(161, 161, 161);
+    margin-bottom: 30px;
     .more_1{
         width: 300px;
         height: 70px;

@@ -72,7 +72,7 @@ export default {
           res.data.foods.forEach(item_2=>{
             if(item_1._id==item_2.category['_id']){
               //初始化点击开始的值，给后端传值
-              item_2.count = 0;
+              this.$set(item_2, 'count', 0)
               item_2.nanoid = nanoid()
               foods.push(item_2)
             }
