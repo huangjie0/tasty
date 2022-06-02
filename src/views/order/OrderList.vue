@@ -19,11 +19,11 @@
         </div>
         <div class="orderListBody_2">
             <div>总价:</div>
-            <div>111</div>
+            <div>{{fullPrice(item) | currencyUSD}}</div>
         </div>
         <div class="more_1">
-            <div class="more">
-            更多
+            <div class="more" @click="more()">
+                更多
             </div>
         </div>
     </div>
@@ -35,11 +35,17 @@
 export default {
     name:'OrderList',
     props:['restaurantList'],
-    created(){
-        setTimeout(()=>{
-            console.log(this.restaurantList)
-        },1000)
-    }
+    methods:{
+        //通過方法返回
+        fullPrice(item){
+            var sum = 0;
+             item.cart.forEach(item_1=>{
+                 sum += item_1.count*item_1.price
+            })
+            return sum
+        }
+    },
+
 }
 </script>
 

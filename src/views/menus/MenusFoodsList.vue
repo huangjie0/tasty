@@ -33,9 +33,6 @@ export default {
             this.$nextTick(function(){
                 //判断是否是同一个元素
                 if(!this.menusFoodsList.includes(v)){
-                    console.log('---------------------------')
-                    console.log(v)
-                    console.log(v.count)
                     //不包含的元素添加到数组中
                     this.menusFoodsList.push(v);
                     //将用户的点击的信息存在浏览本地存储中
