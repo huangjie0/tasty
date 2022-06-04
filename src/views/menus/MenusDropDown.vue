@@ -21,15 +21,16 @@
     <MenusFoodsList/>
     <div class="shopping" v-if="fullPrice==0">请选择购物车</div>
   <!-- 即将要修改的值 -->
-    <div class="dropdown_1 animated bounce" :class="[{dropdowntop:isdropdowntop},
+    <div class="dropdown_1 animated" :class="[{dropdowntop:isdropdowntop},
     {blackBackground:fullPrice > 0 ? 'blackBackground' :''}]" 
-    @click="popped()">{{fullPrice | currencyUSD}} {{fullPrice==0 ? "请下单" :"请确认"}}</div>
+    @click="popped()">{{fullPrice | currencyUSD}}</div>
   </div>
 </template>
 
 <script>
 import MenusDropDownList from '@/views/menus/MenusDropDownList.vue'
 import MenusFoodsList from '@/views/menus/MenusFoodsList.vue'
+
 import {getloacalStore,setloacalStore,removelocalStore} from '@/common/until.js'
 import {olderPut} from '@/api/order/index'
 export default {
@@ -71,6 +72,13 @@ export default {
       },
       //点击的时候弹出菜单提示框
       popped(){
+        //触发修改样式的函数将高度修改
+        if(this.fullPrice==0){
+          this.$bus.$emit('closeStyle')
+        }else{
+          this.$bus.$emit('changeStyle')
+        }
+
         this.isPopped=true
         this.isdropdowntop=true
         this.ismovePrice=true
@@ -294,7 +302,7 @@ export default {
   }
 }
 .dropdown_1:hover{
-  animation-name: anim1;
-  background-color: rgb(55, 145, 55);
+    background-color: rgb(55, 145, 55);
+    animation-name: anim1;
 }
 </style>

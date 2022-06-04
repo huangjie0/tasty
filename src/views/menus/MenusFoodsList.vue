@@ -1,5 +1,5 @@
 <template>
-<div class="overFloat">
+<div class="overFloat" :class="[changeStyle ? 'changeStyle':'']">
     <div class="addFoods" v-for="(item,index) in list" :key="index">
       <div class="addFoodsLeft">
           {{item.name['zh-CN']}}
@@ -23,10 +23,14 @@ export default {
     data() {
         return {
             menusFoodsList:[],
+            changeStyle:false
         }
     },
     //当组件创建时候接受到的值
     mounted(){
+        this.$bus.$on('changeStyle',()=>{
+            this.changeStyle=true
+        })
         //接受数据
         this.$bus.$on('foodList',v=>{
             //在下一次节点更新时候调用的函数
@@ -49,6 +53,9 @@ export default {
             this.$nextTick(function(){
                 this.menusFoodsList=v
             })
+        })
+        this.$bus.$on('closeStyle',()=>{
+        this.changeStyle=false
         })
     },
     methods: {
@@ -76,6 +83,9 @@ export default {
 </script>
 
 <style lang='less' scoped>
+.changeStyle{
+    height: 700px !important;
+}
 .overFloat{
     overflow: auto;
     max-height: 700px;
