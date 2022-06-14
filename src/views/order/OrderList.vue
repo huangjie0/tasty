@@ -47,13 +47,6 @@ export default {
             return sum
         }
     },
-    mounted(){
-        setTimeout(()=>{
-
-            console.log(this.restaurantList)
-        },1000)
-    }
-
 }
 </script>
 

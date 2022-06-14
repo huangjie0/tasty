@@ -9,7 +9,6 @@
 <script>
 import LoginPage from '@/views/login/LoginPage.vue'
 import LoginMask from '@/views/login/Mask.vue'
-
 export default {
     name:'Login',
     components:{

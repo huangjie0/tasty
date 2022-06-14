@@ -172,7 +172,7 @@ export default {
   animation-duration: 0.5s;
   position: fixed;
   width: 400px;
-  height: 746px;
+  height: 750px;
   background-color: rgb(255, 255, 255);
   box-shadow: 0px 0px 10px rgb(150, 150, 150);
   top: 210px;

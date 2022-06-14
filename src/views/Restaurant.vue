@@ -146,6 +146,7 @@ export default {
     //在发请求之前关闭loading
     //再发请求之前开启loading页面
     this.openLoading();
+    
     restaurantget()
       .then((res) => {
         //拿到每一个餐馆的名称

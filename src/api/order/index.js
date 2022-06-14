@@ -18,3 +18,7 @@ export function olderPut(payment,cart,userId,restaurantId){
 export function olderGet(userId){
     return instance.get(`/api/order/${userId}`)
 }
+
+export function Get(){
+    return instance.get('/api/restaurant/location/-74.0059413,40.7127837')
+}
